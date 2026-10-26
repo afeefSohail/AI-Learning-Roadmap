@@ -1,0 +1,30 @@
+{
+  "name": "ai-learning-roadmap",
+  "version": "1.0.0",
+  "description": "40-day hands-on roadmap to becoming an AI engineer in TypeScript: LLM APIs, tool calling, MCP servers, LangGraph.js agents, RAG and evals, ending in a SwiftUI app powered by my own agent backend. One folder per day.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afeefSohail/AI-Learning-Roadmap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/afeefSohail/AI-Learning-Roadmap/issues"
+  },
+  "homepage": "https://github.com/afeefSohail/AI-Learning-Roadmap#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0",
+    "dotenv": "^18.0.9"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
