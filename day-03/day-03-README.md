@@ -32,7 +32,7 @@ message_start → content_block_start → content_block_delta × many → conten
 ```
 
 - `message_start` carries the input token count.
-- `content_block_delta` (with `text_delta`) carries the pieces of text.
+- `content_block_delta` (with `text_delta/input_json_delta/thinking_delta`) carries the pieces of text.
 - `message_delta` near the end carries the `stop_reason` and the final output token count.
 
 ## Experiments

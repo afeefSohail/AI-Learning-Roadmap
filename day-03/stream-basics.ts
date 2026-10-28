@@ -3,7 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 const Model = "claude-haiku-5-5";
-const prompt = "Say hi in 3 words";//"Explain how URLSession works in about 200 words.";
+const prompt = "Explain how URLSession works in about 200 words.";
 
 // 1) Without streaming: wait for the whole reply
 let startTime = performance.now();

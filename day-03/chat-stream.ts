@@ -89,7 +89,7 @@ while (true) {
         if (error instanceof Anthropic.APIUserAbortError) {
             console.log("\n(stopped)\n");
             // Keep what was already said so the conversation still makes sense
-            if (partial) messages.push({ role: "assistant", content: partial });
+            if (partial) messages.push({ role: "assistant", content: `${partial} [stopped by user]` });
             else messages.pop();
         } else {
             messages.pop();
