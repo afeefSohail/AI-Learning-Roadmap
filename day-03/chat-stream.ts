@@ -3,7 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import readline from "node:readline/promises"
 import { stdin as input, stdout as output } from "node:process";
 
-const client = new Anthropic();
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const Model = "claude-haiku-5-5";
 
 // Example values for USD per million tokens (update with actual pricing from the provider if needed)
