@@ -1,7 +1,7 @@
 import "dotenv/config";
 import Anthropic from "@anthropic-ai/sdk";
 
-const client = new Anthropic();
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const Model = "claude-haiku-5-5";
 const prompt = "Explain how URLSession works in about 200 words.";
 
