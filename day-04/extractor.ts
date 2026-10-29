@@ -28,7 +28,7 @@ export async function extract<T extends z.ZodType>(
     for (let attempt = 1; attempt <= MAX_RETRIES + 1; attempt++) {
 
         console.log("useSchema:", opts.useSchema);
-        
+
         const response = await client.messages.create({
             model: MODEL,
             max_tokens: 1000,
@@ -67,7 +67,8 @@ export async function extract<T extends z.ZodType>(
                 problem = "The reply was not valid JSON.";
             }
 
-            lastError = `Attempt ${attempt + 1} failed: ${problem}`;
+            lastError = `Attempt ${attempt} failed: ${problem}`;
+            console.log(`❌ failed Before Retry: ${lastError}`);
 
             // Repair: show the model its own answer and exactly what was wrong
             messages.push({ role: "assistant", content: response.content });
