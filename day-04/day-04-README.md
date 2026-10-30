@@ -85,6 +85,6 @@ The last one means my first comparison wasn't real. Always check that a flag act
 ## Reading
 
 - [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
-- [Zod](https://zod.dev)
+- [Zod](https://zod.dev/api)
 - [Type-safe LLM outputs with Zod](https://dev.to/thegdsks/type-safe-llm-outputs-with-zod-stop-guessing-what-the-model-returns-544e)
 - [Instructor: reask validation](https://git.kennethreitz.org/kennethreitz/instructor/src/commit/20c50f0fe69d591fa8e64dfe05902d112b059782/docs/concepts/reask_validation.md)
