@@ -6,7 +6,7 @@ export const LABELS = [
 ] as const;
 
 export type Label = (typeof LABELS)[number];
-export type Style = "plain" | "structured" | "fewShot";
+export type Style = "plain" | "structured" | "fewShot" | "plainWithLabels";
 export type Prompt = { system?: string; user: string };
 
 const CATEGORIES = `<categories>
@@ -30,6 +30,12 @@ const EXAMPLES: [string, Label][] = [
   ["Where can I find your privacy policy?", "general_question"],
 ];
 
+// <examples>
+//     <example>
+//         <message>"Why was I billed 15 dollars when my plan is 10?"</message>
+//         <category>"billing"</category>
+//     </example>
+// </examples>
 function structured(message: string, withExamples: boolean): Prompt {
   const examples = withExamples
     ? `\n<examples>\n${EXAMPLES.map(([m, l]) => `<example>\n<message>${m}</message>\n<category>${l}</category>\n</example>`).join("\n")}\n</examples>`
@@ -44,7 +50,12 @@ ${RULES}${examples}
 }
 
 export const templates: Record<Style, (messaging: string) => Prompt> = {
-    plain: (message) => ({ user: `Classify this customer support message: ${message}` }),
-    structured: (message) => structured(message, false),
-    fewShot: (message) => structured(message, true),    
-}
+  plain: (message) => ({
+    user: `Classify this customer support message: ${message}`,
+  }),
+  structured: (message) => structured(message, false),
+  fewShot: (message) => structured(message, true),
+  plainWithLabels: (message) => ({
+    user: `Classify this customer support message as one of: billing, bug, feature_request, general_question. Reply with only the category.\n\nMessage: ${message}`,
+  }),
+};

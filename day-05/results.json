@@ -3,289 +3,361 @@
     "style": "plain",
     "text": "I was charged twice for my subscription this month.",
     "expected": "billing",
-    "reply": "**Category:** Billing / Payment issue\n\n**Subcategory:** Duplicate charge\n\n**Priority:** High (customer is being overcharged, which typically warrants a prompt response and refund)\n\n**Sentiment:** Negative (frustrated/concerned)\n\n**Suggested routing:** Billing or payments team",
+    "reply": "**Category:** Billing / Payments\n\n**Subcategory:** Duplicate charge\n\n**Priority:** High (customer is being overcharged, which typically warrants prompt resolution)\n\n**Sentiment:** Negative (frustrated/concerned)\n\n**Suggested routing:** Billing team or payments support\n\n**Suggested actions:**\n- Verify the transaction history for duplicate charges on the account\n- Issue a refund for the duplicate payment if confirmed\n- Confirm the refund timeline with the customer",
     "label": "billing",
     "strict": false,
     "stopReason": "end_turn",
     "inputTokens": 31,
-    "outputToken": 104,
-    "ms": 1990
+    "outputToken": 168,
+    "ms": 1861
   },
   {
     "style": "plain",
     "text": "I was charged twice for my subscription this month.",
     "expected": "billing",
-    "reply": "**Category:** Billing / Payment issue\n**Sub-category:** Duplicate charge\n**Sentiment:** Negative (frustrated/concerned)\n**Priority:** High (involves unexpected financial charges)\n**Suggested action:** Verify the transactions on the account, and if a duplicate is confirmed, issue a refund and check for a system or processing error.",
+    "reply": "**Category:** Billing / Payment Issue\n\n**Sub-category:** Duplicate charge\n\n**Priority:** High (customer is being charged incorrectly, which directly affects their money and may cause trust issues)\n\n**Sentiment:** Negative (frustrated/concerned)\n\n**Suggested routing:** Billing or payments team, with a request to verify the transactions and issue a refund for the duplicate charge if confirmed.",
     "label": "billing",
     "strict": false,
     "stopReason": "end_turn",
     "inputTokens": 31,
-    "outputToken": 122,
-    "ms": 1969
+    "outputToken": 140,
+    "ms": 1760
   },
   {
     "style": "plain",
     "text": "I was charged twice for my subscription this month.",
     "expected": "billing",
-    "reply": "**Category:** Billing / Payment Issue\n\n**Sub-category:** Duplicate charge\n\n**Priority:** High (customer is being overcharged, which typically warrants a quick response and refund)\n\n**Sentiment:** Negative (frustrated/concerned)\n\n**Suggested routing:** Billing or Accounts team\n\nIf your system uses different category names or priority levels, I can map this to your schema.",
+    "reply": "**Category:** Billing / Payments\n\n**Subcategory:** Duplicate charge\n\n**Priority:** High (customer is being overcharged, which often leads to frustration and chargebacks if not resolved quickly)\n\n**Sentiment:** Negative (frustrated/concerned)\n\n**Suggested routing:** Billing team, with a request to verify the transactions and issue a refund for the duplicate charge if confirmed.",
     "label": "billing",
     "strict": false,
     "stopReason": "end_turn",
     "inputTokens": 31,
-    "outputToken": 130,
-    "ms": 2054
+    "outputToken": 138,
+    "ms": 1759
   },
   {
     "style": "plain",
     "text": "The app crashes every time I open the camera screen.",
     "expected": "bug",
-    "reply": "**Category:** Bug Report (Technical Issue)\n\n**Priority:** High, since the app crashes consistently and blocks use of a core feature (the camera).\n\n**Sentiment:** Negative, frustrated\n\n**Key details:**\n- **Issue:** App crash\n- **Trigger:** Opening the camera screen\n- **Frequency:** Every time (reproducible)\n\n**Suggested routing:** Engineering / mobile app support team, with the reproduction steps noted for triage.",
+    "reply": "**Category:** Bug Report (Technical Issue / App Crash)\n\n**Priority:** High, since the app crashes consistently and blocks use of a core feature (the camera).\n\n**Key details:**\n- **Issue:** App crashes on opening the camera screen\n- **Reproducibility:** Consistent (\"every time\")\n- **Affected area:** Camera feature\n\n**Suggested routing:** Engineering / mobile app support team, with a note to check the camera module and recent releases for regressions.",
     "label": "bug",
     "strict": false,
     "stopReason": "end_turn",
     "inputTokens": 32,
-    "outputToken": 159,
+    "outputToken": 160,
+    "ms": 1560
+  },
+  {
+    "style": "plain",
+    "text": "The app crashes every time I open the camera screen.",
+    "expected": "bug",
+    "reply": "**Category:** Bug Report (Technical Issue)\n\n**Priority:** High, since the app crashes consistently on a core feature (the camera screen), which blocks usage.\n\n**Sentiment:** Frustrated/negative\n\n**Key details:**\n- **Issue:** App crash\n- **Trigger:** Opening the camera screen\n- **Frequency:** Every time (reproducible)\n\n**Suggested routing:** Engineering/mobile app team, with a note to check crash logs for the camera module.",
+    "label": "bug",
+    "strict": false,
+    "stopReason": "end_turn",
+    "inputTokens": 32,
+    "outputToken": 163,
     "ms": 1459
   },
   {
     "style": "plain",
     "text": "The app crashes every time I open the camera screen.",
     "expected": "bug",
-    "reply": "**Category:** Bug Report (Technical Issue)\n\n**Subcategory:** App Crash / Stability\n\n**Priority:** High, since the crash happens every time and blocks use of the camera feature.\n\n**Key details:**\n- **Component:** Camera screen\n- **Trigger:** Opening the camera screen\n- **Frequency:** Consistent (every time)\n\n**Sentiment:** Frustrated (negative)\n\nIf your system uses different category names or priority levels, I can map this to those.",
+    "reply": "**Category:** Bug Report (Technical Issue)\n\n**Priority:** High. The app crashes consistently, and the failure is tied to a specific feature (the camera screen), so it blocks use of that functionality.\n\n**Sentiment:** Negative (frustrated)\n\n**Suggested routing:** Engineering / Mobile App Support\n\n**Key details:**\n- Issue: App crash\n- Trigger: Opening the camera screen\n- Frequency: Every time (reproducible)",
     "label": "bug",
     "strict": false,
     "stopReason": "end_turn",
     "inputTokens": 32,
-    "outputToken": 159,
+    "outputToken": 157,
+    "ms": 1321
+  },
+  {
+    "style": "plain",
+    "text": "Could you add dark mode? My eyes hurt at night.",
+    "expected": "feature_request",
+    "reply": "**Category:** Feature Request\n\n**Sub-category:** UI/Display Enhancement (Dark Mode)\n\n**Sentiment:** Neutral to mildly negative (the customer mentions eye discomfort, but the tone is polite and not angry)\n\n**Priority:** Low to medium. This is a non-urgent enhancement, though the mention of physical discomfort suggests it matters to the user personally.\n\n**Key details:**\n- Requested feature: dark mode\n- Reason: eye strain or discomfort when using the product at night\n- No bug report, complaint about an error, or account issue",
+    "label": "bug",
+    "strict": false,
+    "stopReason": "end_turn",
+    "inputTokens": 36,
+    "outputToken": 191,
     "ms": 1622
   },
   {
     "style": "plain",
-    "text": "The app crashes every time I open the camera screen.",
-    "expected": "bug",
-    "reply": "**Category:** Bug Report (Technical Issue / App Crash)\n\n**Priority:** High, since the crash is reproducible and blocks use of a core feature (the camera).\n\n**Key details:**\n- **Issue:** App crashes\n- **Trigger:** Opening the camera screen\n- **Frequency:** Every time (consistent, reproducible)\n\n**Suggested routing:** Engineering / mobile app support team, with a request for device model, OS version, and app version if not already provided.",
+    "text": "Could you add dark mode? My eyes hurt at night.",
+    "expected": "feature_request",
+    "reply": "**Category:** Feature request\n\n**Sentiment:** Mildly negative / frustrated (the user's eyes hurt at night, so there's some discomfort)\n\n**Intent:** Requesting a new feature (dark mode/theme option)\n\n**Priority:** Low to medium. It's a enhancement request, not a bug or blocker, but the stated discomfort suggests a real user need.",
     "label": "bug",
     "strict": false,
     "stopReason": "end_turn",
-    "inputTokens": 32,
-    "outputToken": 158,
-    "ms": 1499
+    "inputTokens": 36,
+    "outputToken": 125,
+    "ms": 1456
   },
   {
     "style": "plain",
     "text": "Could you add dark mode? My eyes hurt at night.",
     "expected": "feature_request",
-    "reply": "**Category:** Feature Request\n\n**Sub-type:** UI/Display enhancement (dark mode)\n\n**Sentiment:** Neutral to mildly negative (the mention of eye strain suggests discomfort, but the tone is polite and not angry)\n\n**Priority:** Low to medium. This is a suggestion rather than a bug or blocker, but the user is experiencing physical discomfort, so it's worth tracking if many users request it.\n\n**Suggested routing:** Product team (feature backlog), with a courtesy reply acknowledging the request.",
+    "reply": "**Category:** Feature Request\n\n**Subcategory:** UI/Display (Dark Mode / Theme)\n\n**Sentiment:** Neutral to mildly negative (the user mentions discomfort, but the tone is polite)\n\n**Priority:** Low to Medium. This is a enhancement request, not a bug or blocker, though the user is experiencing some eye strain, which may make it more pressing for them personally.\n\n**Suggested Routing:** Product team (feature backlog)\n\n**Suggested Response:** Thank the customer, confirm the request has been logged, and let them know whether dark mode is planned or already in development. If",
     "label": "bug",
     "strict": false,
-    "stopReason": "end_turn",
+    "stopReason": "max_tokens",
     "inputTokens": 36,
-    "outputToken": 180,
-    "ms": 1771
-  },
-  {
-    "style": "plain",
-    "text": "Could you add dark mode? My eyes hurt at night.",
-    "expected": "feature_request",
-    "reply": "**Category:** Feature Request\n\n**Sub-type:** UI/Display enhancement\n\n**Sentiment:** Neutral to mildly negative (the mention of eye pain suggests some discomfort with the current experience)\n\n**Priority:** Low to medium. It's a feature request rather than a bug or outage, but the customer describes a real usability issue, so it may be worth tracking if similar feedback comes in.\n\n**Key details:**\n- Requested feature: dark mode\n- Stated reason: eye strain or discomfort when using the product at night\n- No urgency or account issues mentioned",
-    "label": "bug",
-    "strict": false,
-    "stopReason": "end_turn",
-    "inputTokens": 36,
-    "outputToken": 189,
-    "ms": 2022
-  },
-  {
-    "style": "plain",
-    "text": "Could you add dark mode? My eyes hurt at night.",
-    "expected": "feature_request",
-    "reply": "**Category:** Feature Request\n\n**Sentiment:** Neutral to mildly negative (the eye discomfort suggests some frustration, but the tone is polite)\n\n**Priority:** Low to medium. It's a request for new functionality rather than a bug or outage, though the mention of eye pain may indicate a usability issue worth noting.\n\n**Summary:** The customer is asking for a dark mode option because the current bright interface causes eye discomfort when used at night.",
-    "label": "bug",
-    "strict": false,
-    "stopReason": "end_turn",
-    "inputTokens": 36,
-    "outputToken": 150,
-    "ms": 1540
+    "outputToken": 200,
+    "ms": 1929
   },
   {
     "style": "plain",
     "text": "How do I change my profile photo?",
     "expected": "general_question",
-    "reply": "**Category:** Account Management / Profile Settings\n\n**Type:** How-to question (general inquiry)\n\n**Priority:** Low (no urgency or issue reported)\n\n**Sentiment:** Neutral\n\n**Suggested action:** Provide step-by-step instructions for updating the profile photo, or link to the relevant help article.",
+    "reply": "**Category:** Account Management / Profile Settings\n\n**Type:** How-to question (general inquiry)\n\n**Priority:** Low\n\n**Sentiment:** Neutral\n\n**Suggested action:** Provide step-by-step instructions for updating the profile photo, or link to the relevant help article. No escalation needed.",
     "label": null,
     "strict": false,
     "stopReason": "end_turn",
     "inputTokens": 27,
-    "outputToken": 107,
-    "ms": 1368
+    "outputToken": 103,
+    "ms": 1174
   },
   {
     "style": "plain",
     "text": "How do I change my profile photo?",
     "expected": "general_question",
-    "reply": "**Category:** Account Management / Profile Settings\n\n**Type:** How-to question (general inquiry)\n\n**Priority:** Low. It's a routine usage question with no sign of an outage, security issue, or billing problem.\n\n**Sentiment:** Neutral\n\n**Suggested routing:** Self-service help article or FAQ on updating profile settings. Escalation to a human agent is not needed unless the customer reports a specific error.",
-    "label": "billing",
+    "reply": "**Category:** Account Management / Profile Settings\n\n**Type:** How-to question (general inquiry)\n\n**Priority:** Low\n\n**Sentiment:** Neutral\n\n**Suggested action:** Provide step-by-step instructions for updating the profile photo in account settings, or link to the relevant help article.",
+    "label": null,
     "strict": false,
     "stopReason": "end_turn",
     "inputTokens": 27,
-    "outputToken": 139,
-    "ms": 1541
+    "outputToken": 100,
+    "ms": 1199
   },
   {
     "style": "plain",
     "text": "How do I change my profile photo?",
     "expected": "general_question",
-    "reply": "**Category:** Account Management (Profile Settings)\n\n**Intent:** How-to / Instructional question\n\n**Sentiment:** Neutral\n\n**Priority:** Low\n\n**Suggested routing:** Self-service help article or FAQ on updating profile settings. No agent escalation needed unless the customer reports a failure afterward.",
+    "reply": "**Category:** Account Management / Profile Settings\n\n**Intent:** How-to / Instructional question\n\n**Sentiment:** Neutral\n\n**Priority:** Low\n\n**Suggested routing:** Self-service help article or FAQ on updating profile settings. No escalation needed.",
     "label": null,
     "strict": false,
     "stopReason": "end_turn",
     "inputTokens": 27,
-    "outputToken": 108,
-    "ms": 1451
+    "outputToken": 92,
+    "ms": 1612
   },
   {
     "style": "plain",
     "text": "Please refund me, and also the export button does nothing.",
     "expected": "billing",
-    "reply": "This message contains **two issues**, so it should be classified under more than one category:\n\n1. **Billing / Refund Request** (primary): \"Please refund me\" is an explicit request for money back. It usually goes to the billing or payments team.\n2. **Technical Issue / Bug Report** (secondary): \"the export button does nothing\" describes a product malfunction, which goes to the product or engineering team.\n\n**Suggested handling:** Route it to",
+    "reply": "This message contains **two issues**, so it should be classified under multiple categories:\n\n1. **Refund request** (Billing/Payments): \"Please refund me\" is a direct request for money back.\n2. **Bug report** (Technical/Product): \"the export button does nothing\" describes a functional defect.\n\n**Suggested routing:** Send the refund request to billing or the finance team, and the bug report to engineering or product support. If your system allows only one primary category, use **Billing/Refund**",
     "label": null,
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 33,
     "outputToken": 200,
-    "ms": 1800
+    "ms": 1582
   },
   {
     "style": "plain",
     "text": "Please refund me, and also the export button does nothing.",
     "expected": "billing",
-    "reply": "This message contains **two distinct issues**:\n\n1. **Refund request**: Billing/Payments. The customer wants their money back. This is the primary request.\n2. **Bug report**: Technical/Product defect. The export button isn't functioning.\n\n**Suggested routing:** Billing team for the refund, and Technical support or Engineering for the bug. If your system allows only one category, classify it as **Billing** because the refund is the explicit request, and flag",
+    "reply": "This message contains **two distinct requests**, so it should be classified under both categories:\n\n1. **\"Please refund me\"** → **Billing / Refund Request**\n   - Type: Financial or account request\n   - Suggested routing: Billing or finance team\n\n2. **\"The export button does nothing\"** → **Technical Issue / Bug Report**\n   - Type: Product functionality problem\n   - Suggested routing: Technical support or engineering\n\n**Overall",
     "label": null,
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 33,
     "outputToken": 200,
-    "ms": 1800
+    "ms": 1581
   },
   {
     "style": "plain",
     "text": "Please refund me, and also the export button does nothing.",
     "expected": "billing",
-    "reply": "This message contains **two issues**, so it should be classified under both:\n\n1. **Refund request** (Billing/Payments). The customer is asking for money back. Primary category if you need a single label.\n2. **Bug report** (Technical/Product). The export button is not functioning.\n\n**Priority:** Medium. The refund is a clear request, and the bug is a functional defect that may block work.\n\n**Suggested routing:**",
+    "reply": "This message contains **two separate issues**:\n\n1. **Refund request**\n   - **Category:** Billing / Payments\n   - **Type:** Request\n\n2. **Export button not working**\n   - **Category:** Technical / Bug report\n   - **Type:** Product defect (functionality issue)\n\n**Overall:** Multi-issue message. Route the refund request to billing and the export bug to technical support or engineering. Splitting them into separate tickets helps each get hand",
     "label": null,
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 33,
     "outputToken": 200,
-    "ms": 1800
+    "ms": 1996
   },
   {
     "style": "plain",
     "text": "Mera payment cut gaya lekin subscription active nahi hui.",
     "expected": "billing",
-    "reply": "**Category:** Billing / Payment\n\n**Sub-category:** Payment deducted, but subscription not activated\n\n**Translation:** \"My payment was deducted, but the subscription isn't active.\"\n\n**Sentiment:** Frustrated or concerned\n\n**Priority:** High. The customer has paid but isn't recei",
+    "reply": "**Category:** Billing & Payments\n**Sub-category:** Payment deducted but subscription not activated (failed activation after successful charge)\n\n**Details:**\n- **Language:** Hinglish (Hindi written in Roman script)\n- **Sentiment:** Frustrated or concerned\n- **Urgency:** High. The",
     "label": "billing",
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 40,
     "outputToken": 200,
-    "ms": 1728
+    "ms": 1719
   },
   {
     "style": "plain",
     "text": "Mera payment cut gaya lekin subscription active nahi hui.",
     "expected": "billing",
-    "reply": "**Category:** Billing / Payment issue\n**Sub-category:** Subscription activation failure (payment deducted, service not activated)\n\n**Sentiment:** Negative (frustrated)\n**Priority:** High. The customer has been charged but isn't receiving the service.\n**Intent:** Requesting resolution",
+    "reply": "**Category:** Billing / Payment issue\n**Subcategory:** Payment deducted but subscription not activated (failed fulfillment after successful charge)\n\n**Details:**\n- **Language:**",
     "label": "billing",
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 40,
     "outputToken": 200,
-    "ms": 1913
+    "ms": 1612
   },
   {
     "style": "plain",
     "text": "Mera payment cut gaya lekin subscription active nahi hui.",
     "expected": "billing",
-    "reply": "**Category:** Billing / Payment issue (subscription activation failure)\n\n**Sub-category:** Payment deducted but service not delivered\n\n**Priority:** High. The customer has been charged without receiving the service, so this needs quick resolution and possibly a refund.\n\n**Sentiment:** Frustrated or concerned",
+    "reply": "**Category:** Billing / Payment\n**Subcategory:** Payment deducted but service not activated (subscription activation failure)\n\n**Translation:** \"My payment was deducted, but the subscription isn't active.\"\n\n**Details:**\n- **Language:** Hinglish (Hindi written in",
     "label": "billing",
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 40,
     "outputToken": 200,
-    "ms": 2010
+    "ms": 2253
   },
   {
     "style": "plain",
     "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
     "expected": "bug",
-    "reply": "**Category:** Bug report (possible data loss or regression after a software update)\n\n**Sentiment:** Negative. The sarcasm (\"Great,\" \"Thanks a lot\") signals frustration, not appreciation.\n\n**Intent:**",
+    "reply": "**Category:** Complaint (bug report)\n\n- **Sentiment:** Negative, expressed with sarcasm (\"Great,\" \"Thanks a lot\")\n- **Issue:** Data loss. A recent update deleted saved drafts.\n- **Customer",
     "label": "bug",
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 41,
     "outputToken": 200,
-    "ms": 1815
+    "ms": 1558
   },
   {
     "style": "plain",
     "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
     "expected": "bug",
-    "reply": "**Category:** Bug report / product complaint (software update causing data loss)\n\n**Sentiment:** Negative, with sarcasm (\"Great,\" \"Thanks a lot\")\n\n**Urgency:** High. The user reports lost data (saved drafts), which is more serious than a cosmetic issue.\n\n**Intent:** Report a problem and express frustration. The user isn't clearly asking for a specific action, though they likely expect a fix or recovery options.\n\n**",
+    "reply": "**Classification:**\n\n- **Sentiment:** Negative (sarcastic)\n- **Type:** Complaint\n- **Topic:** Bug report / data loss (saved drafts deleted after an update)\n- **Urgency:** High. The customer reports lost data, which can be serious and may need prompt attention.\n- **Suggested routing:** Technical support or the product/engineering team, with a note",
     "label": "bug",
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 41,
     "outputToken": 200,
-    "ms": 1967
+    "ms": 1685
   },
   {
     "style": "plain",
     "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
     "expected": "bug",
-    "reply": "**Category:** Bug report / product issue (data loss after an update)\n\n**Sentiment:** Negative, expressed with sarcasm (\"Great,\" \"Thanks a lot\")\n\n**Priority:** High. Deleted drafts mean possible loss of user data, and the user is frustrated enough to call out a recurring problem (\"another update\").\n\n**Suggested tags:** `bug`, `data-loss`, `software-update`, `negative-sentiment`, `rep",
+    "reply": "**Classification:**\n\n- **Sentiment:** Negative. The sarcasm (\"Great,\" \"Thanks a lot\") signals frustration.\n- **Type:** Complaint, with an implied bug report. The customer says an update deleted their saved drafts.\n- **Topic:** Product update / data loss.\n- **Priority:** High.",
     "label": "bug",
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 41,
     "outputToken": 200,
-    "ms": 1878
+    "ms": 1618
   },
   {
     "style": "plain",
     "text": "It doesn't work.",
     "expected": "general_question",
-    "reply": "**Category:** Technical issue (product or service malfunction)\n\n**Sentiment:** Negative, likely frustrated\n\n**Priority:** Medium by default. The message gives no detail about severity, scope, or whether the customer is blocked entirely, so it can't be ranked higher without more information.\n\n**Intent:** Report a problem and request help\n\n**Note:** The message is too v",
+    "reply": "**Category:** Technical issue (product or service malfunction)\n\n**Sentiment:** Negative (frustrated or dissatisfied)\n\n**Priority:** Medium, pending more detail. The message signals a problem but doesn't say what is broken, how severely it affects the customer, or whether it blocks their work",
     "label": null,
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 24,
     "outputToken": 200,
-    "ms": 1884
+    "ms": 1692
   },
   {
     "style": "plain",
     "text": "It doesn't work.",
     "expected": "general_question",
-    "reply": "**Category:** Technical issue (product or service malfunction)\n\n**Sentiment:** Negative (frustrated or dissatisfied)\n\n**Urgency:** Medium. The customer reports a problem but gives no detail on severity or impact.\n\n**Notes:** The message is too vague to route or resolve on its own. The agent will likely need to ask what \"it\" refers to, what the customer was doing when the problem",
-    "label": null,
-    "strict": false,
-    "stopReason": "max_tokens",
-    "inputTokens": 24,
-    "outputToken": 200,
-    "ms": 1959
-  },
-  {
-    "style": "plain",
-    "text": "It doesn't work.",
-    "expected": "general_question",
-    "reply": "**Category:** Technical issue / product malfunction (bug or defect report)\n\n**Sentiment:** Negative (frustrated or dissatisfied)\n\n**Priority:** Medium, pending more information. The message reports a failure but gives no details about what failed, so it can't be routed to a specialist or resolved yet.\n\n**Notes:** The message is too vague to diagnose. Support would typically follow up to",
+    "reply": "**Category:** Technical issue (product malfunction or bug report)\n\n**Sentiment:** Negative (frustrated or dissatisfied)\n\n**Priority:** Unknown. The message gives no details about what \"it\" is or how it fails, so it can't be reliably triaged. It may warrant a normal-priority ticket until the customer clarifies.\n\n**Action needed:** Request more information,",
     "label": "bug",
     "strict": false,
     "stopReason": "max_tokens",
     "inputTokens": 24,
     "outputToken": 200,
-    "ms": 1858
+    "ms": 1668
+  },
+  {
+    "style": "plain",
+    "text": "It doesn't work.",
+    "expected": "general_question",
+    "reply": "**Category:** Technical issue (product or service malfunction)\n\n**Sentiment:** Negative (frustrated)\n\n**Priority:** Medium, pending clarification. The message is too vague to route or prioritize confidently.\n\n**Suggested next step:** Ask the customer what \"it\" refers to, what",
+    "label": null,
+    "strict": false,
+    "stopReason": "max_tokens",
+    "inputTokens": 24,
+    "outputToken": 200,
+    "ms": 1516
+  },
+  {
+    "style": "plain",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "**Category:** Technical issue (UI/bug report)\n\n**Subcategory:** Refund / billing functionality\n\n**Sentiment:** Neutral (factual, no explicit frustration)\n\n**Urgency:** Medium. It blocks a specific action (processing a refund), but it doesn't appear to affect the whole system.\n\n**Intent:** The customer or agent is reporting that they cannot use the refund button, most likely because it's disabled.\n\nIf your support system uses a specific taxonomy (e.g., \"Bug,\" \"Billing,\" \"Account Access\"), let me know and I can map it to those labels.",
+    "label": null,
+    "strict": false,
+    "stopReason": "end_turn",
+    "inputTokens": 27,
+    "outputToken": 194,
+    "ms": 1596
+  },
+  {
+    "style": "plain",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "**Category:** Technical issue (UI/functionality bug)\n\n**Sub-category:** Refund/payment interface problem\n\n**Reasoning:** The customer reports that a UI element (the refund button) is disabled or unavailable, which points to a software or interface problem rather than a billing dispute, a product question, or a request for a refund itself.\n\n**Suggested priority:** Medium to high, since it blocks the customer from completing a refund and may require the agent to process it manually.\n\n**Possible routing:** Technical support or the engineering/product team, with a note to check whether the button is disabled by design (for example, due to refund eligibility r",
+    "label": null,
+    "strict": false,
+    "stopReason": "max_tokens",
+    "inputTokens": 27,
+    "outputToken": 200,
+    "ms": 1813
+  },
+  {
+    "style": "plain",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "**Category:** Technical issue (UI/bug report)\n\n**Subcategory:** Button/interface malfunction, possibly related to refunds (billing or account-action flow)\n\n**Sentiment:** Neutral, a factual report of a problem, with mild frustration implied\n\n**Priority:** Medium. It blocks a specific action (refunds) but doesn't appear to be a full service outage. Escalate to High if multiple customers report it or if the customer is trying to resolve an urgent billing issue.\n\n**Suggested routing:** Frontend/UI support or the billing team, depending on whether your team handles UI bugs separately",
+    "label": null,
+    "strict": false,
+    "stopReason": "max_tokens",
+    "inputTokens": 27,
+    "outputToken": 200,
+    "ms": 1812
+  },
+  {
+    "style": "plain",
+    "text": "Will you ever support Apple Watch?",
+    "expected": "general_question",
+    "reply": "**Category:** Feature Request (or Product Inquiry)\n\n**Reasoning:** The customer is asking whether the product will add support for Apple Watch, which points to a desired future capability rather than a bug, account issue, or request for help with current functionality. It's phrased as a question, but it's really asking the company to consider adding a feature.\n\n**Suggested routing:** Product feedback or roadmap team. The support agent can ackn",
+    "label": "bug",
+    "strict": false,
+    "stopReason": "max_tokens",
+    "inputTokens": 30,
+    "outputToken": 200,
+    "ms": 1955
+  },
+  {
+    "style": "plain",
+    "text": "Will you ever support Apple Watch?",
+    "expected": "general_question",
+    "reply": "**Category:** Feature request (product inquiry)\n\n**Reasoning:** The customer is asking whether the product will add Apple Watch support, which points to a desired feature or integration that doesn't exist yet. It is phrased as a question, but it isn't a request for help with a current issue.\n\n**Suggested routing:** Product feedback or feature request queue, not technical support. A response could say whether Apple Watch support is planned, if that information is available, or thank the customer for the",
+    "label": null,
+    "strict": false,
+    "stopReason": "max_tokens",
+    "inputTokens": 30,
+    "outputToken": 200,
+    "ms": 1596
+  },
+  {
+    "style": "plain",
+    "text": "Will you ever support Apple Watch?",
+    "expected": "general_question",
+    "reply": "**Category:** Feature request (product inquiry)\n\n**Intent:** The customer wants to know whether the product will support Apple Watch in the future. They aren't reporting a bug or asking for help with an existing feature.\n\n**Sentiment:** Neutral\n\n**Priority:** Low. No urgent issue is described, though it may signal interest from a user who wants to switch or stay.\n\n**Suggested routing:** Product feedback or sales/product team",
+    "label": "bug",
+    "strict": false,
+    "stopReason": "max_tokens",
+    "inputTokens": 30,
+    "outputToken": 200,
+    "ms": 1787
   },
   {
     "style": "structured",
@@ -297,7 +369,7 @@
     "stopReason": "end_turn",
     "inputTokens": 251,
     "outputToken": 4,
-    "ms": 977
+    "ms": 956
   },
   {
     "style": "structured",
@@ -309,7 +381,7 @@
     "stopReason": "end_turn",
     "inputTokens": 251,
     "outputToken": 4,
-    "ms": 977
+    "ms": 1017
   },
   {
     "style": "structured",
@@ -321,7 +393,7 @@
     "stopReason": "end_turn",
     "inputTokens": 251,
     "outputToken": 4,
-    "ms": 942
+    "ms": 847
   },
   {
     "style": "structured",
@@ -333,7 +405,7 @@
     "stopReason": "end_turn",
     "inputTokens": 252,
     "outputToken": 4,
-    "ms": 1006
+    "ms": 891
   },
   {
     "style": "structured",
@@ -345,7 +417,7 @@
     "stopReason": "end_turn",
     "inputTokens": 252,
     "outputToken": 4,
-    "ms": 1166
+    "ms": 1005
   },
   {
     "style": "structured",
@@ -357,7 +429,7 @@
     "stopReason": "end_turn",
     "inputTokens": 252,
     "outputToken": 4,
-    "ms": 1332
+    "ms": 855
   },
   {
     "style": "structured",
@@ -369,7 +441,7 @@
     "stopReason": "end_turn",
     "inputTokens": 256,
     "outputToken": 6,
-    "ms": 1537
+    "ms": 1271
   },
   {
     "style": "structured",
@@ -381,7 +453,7 @@
     "stopReason": "end_turn",
     "inputTokens": 256,
     "outputToken": 6,
-    "ms": 1258
+    "ms": 1270
   },
   {
     "style": "structured",
@@ -393,7 +465,7 @@
     "stopReason": "end_turn",
     "inputTokens": 256,
     "outputToken": 6,
-    "ms": 1258
+    "ms": 866
   },
   {
     "style": "structured",
@@ -405,7 +477,7 @@
     "stopReason": "end_turn",
     "inputTokens": 247,
     "outputToken": 5,
-    "ms": 1056
+    "ms": 936
   },
   {
     "style": "structured",
@@ -417,163 +489,235 @@
     "stopReason": "end_turn",
     "inputTokens": 247,
     "outputToken": 5,
+    "ms": 1034
+  },
+  {
+    "style": "structured",
+    "text": "How do I change my profile photo?",
+    "expected": "general_question",
+    "reply": "general_question",
+    "label": "general_question",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 247,
+    "outputToken": 5,
+    "ms": 915
+  },
+  {
+    "style": "structured",
+    "text": "Please refund me, and also the export button does nothing.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 253,
+    "outputToken": 4,
+    "ms": 1149
+  },
+  {
+    "style": "structured",
+    "text": "Please refund me, and also the export button does nothing.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 253,
+    "outputToken": 4,
+    "ms": 1051
+  },
+  {
+    "style": "structured",
+    "text": "Please refund me, and also the export button does nothing.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 253,
+    "outputToken": 4,
     "ms": 1055
   },
   {
     "style": "structured",
-    "text": "How do I change my profile photo?",
+    "text": "Mera payment cut gaya lekin subscription active nahi hui.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 260,
+    "outputToken": 4,
+    "ms": 1007
+  },
+  {
+    "style": "structured",
+    "text": "Mera payment cut gaya lekin subscription active nahi hui.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 260,
+    "outputToken": 4,
+    "ms": 955
+  },
+  {
+    "style": "structured",
+    "text": "Mera payment cut gaya lekin subscription active nahi hui.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 260,
+    "outputToken": 4,
+    "ms": 955
+  },
+  {
+    "style": "structured",
+    "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 261,
+    "outputToken": 4,
+    "ms": 1012
+  },
+  {
+    "style": "structured",
+    "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 261,
+    "outputToken": 4,
+    "ms": 1012
+  },
+  {
+    "style": "structured",
+    "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 261,
+    "outputToken": 4,
+    "ms": 1012
+  },
+  {
+    "style": "structured",
+    "text": "It doesn't work.",
     "expected": "general_question",
     "reply": "general_question",
     "label": "general_question",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 244,
+    "outputToken": 5,
+    "ms": 1123
+  },
+  {
+    "style": "structured",
+    "text": "It doesn't work.",
+    "expected": "general_question",
+    "reply": "general_question",
+    "label": "general_question",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 244,
+    "outputToken": 5,
+    "ms": 1124
+  },
+  {
+    "style": "structured",
+    "text": "It doesn't work.",
+    "expected": "general_question",
+    "reply": "general_question",
+    "label": "general_question",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 244,
+    "outputToken": 5,
+    "ms": 1124
+  },
+  {
+    "style": "structured",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
     "strict": true,
     "stopReason": "end_turn",
     "inputTokens": 247,
-    "outputToken": 5,
-    "ms": 1961
+    "outputToken": 154,
+    "ms": 1549
   },
   {
     "style": "structured",
-    "text": "Please refund me, and also the export button does nothing.",
-    "expected": "billing",
-    "reply": "billing",
-    "label": "billing",
-    "strict": true,
-    "stopReason": "end_turn",
-    "inputTokens": 253,
-    "outputToken": 4,
-    "ms": 1454
-  },
-  {
-    "style": "structured",
-    "text": "Please refund me, and also the export button does nothing.",
-    "expected": "billing",
-    "reply": "billing",
-    "label": "billing",
-    "strict": true,
-    "stopReason": "end_turn",
-    "inputTokens": 253,
-    "outputToken": 4,
-    "ms": 1258
-  },
-  {
-    "style": "structured",
-    "text": "Please refund me, and also the export button does nothing.",
-    "expected": "billing",
-    "reply": "billing",
-    "label": "billing",
-    "strict": true,
-    "stopReason": "end_turn",
-    "inputTokens": 253,
-    "outputToken": 4,
-    "ms": 2462
-  },
-  {
-    "style": "structured",
-    "text": "Mera payment cut gaya lekin subscription active nahi hui.",
-    "expected": "billing",
-    "reply": "billing",
-    "label": "billing",
-    "strict": true,
-    "stopReason": "end_turn",
-    "inputTokens": 260,
-    "outputToken": 4,
-    "ms": 1447
-  },
-  {
-    "style": "structured",
-    "text": "Mera payment cut gaya lekin subscription active nahi hui.",
-    "expected": "billing",
-    "reply": "billing",
-    "label": "billing",
-    "strict": true,
-    "stopReason": "end_turn",
-    "inputTokens": 260,
-    "outputToken": 4,
-    "ms": 1205
-  },
-  {
-    "style": "structured",
-    "text": "Mera payment cut gaya lekin subscription active nahi hui.",
-    "expected": "billing",
-    "reply": "billing",
-    "label": "billing",
-    "strict": true,
-    "stopReason": "end_turn",
-    "inputTokens": 260,
-    "outputToken": 4,
-    "ms": 1240
-  },
-  {
-    "style": "structured",
-    "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
+    "text": "The refund button is greyed out.",
     "expected": "bug",
     "reply": "bug",
     "label": "bug",
     "strict": true,
     "stopReason": "end_turn",
-    "inputTokens": 261,
-    "outputToken": 4,
-    "ms": 1062
+    "inputTokens": 247,
+    "outputToken": 181,
+    "ms": 2013
   },
   {
     "style": "structured",
-    "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
+    "text": "The refund button is greyed out.",
     "expected": "bug",
     "reply": "bug",
     "label": "bug",
     "strict": true,
     "stopReason": "end_turn",
-    "inputTokens": 261,
-    "outputToken": 4,
-    "ms": 982
+    "inputTokens": 247,
+    "outputToken": 164,
+    "ms": 1549
   },
   {
     "style": "structured",
-    "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
-    "expected": "bug",
-    "reply": "bug",
-    "label": "bug",
-    "strict": true,
-    "stopReason": "end_turn",
-    "inputTokens": 261,
-    "outputToken": 4,
-    "ms": 985
-  },
-  {
-    "style": "structured",
-    "text": "It doesn't work.",
+    "text": "Will you ever support Apple Watch?",
     "expected": "general_question",
-    "reply": "general_question",
-    "label": "general_question",
+    "reply": "feature_request",
+    "label": "feature_request",
     "strict": true,
     "stopReason": "end_turn",
-    "inputTokens": 244,
-    "outputToken": 5,
-    "ms": 1736
+    "inputTokens": 250,
+    "outputToken": 6,
+    "ms": 1101
   },
   {
     "style": "structured",
-    "text": "It doesn't work.",
+    "text": "Will you ever support Apple Watch?",
     "expected": "general_question",
-    "reply": "general_question",
-    "label": "general_question",
+    "reply": "feature_request",
+    "label": "feature_request",
     "strict": true,
     "stopReason": "end_turn",
-    "inputTokens": 244,
-    "outputToken": 5,
-    "ms": 1564
+    "inputTokens": 250,
+    "outputToken": 6,
+    "ms": 1044
   },
   {
     "style": "structured",
-    "text": "It doesn't work.",
+    "text": "Will you ever support Apple Watch?",
     "expected": "general_question",
-    "reply": "general_question",
-    "label": "general_question",
+    "reply": "feature_request",
+    "label": "feature_request",
     "strict": true,
     "stopReason": "end_turn",
-    "inputTokens": 244,
-    "outputToken": 5,
-    "ms": 993
+    "inputTokens": 250,
+    "outputToken": 6,
+    "ms": 1097
   },
   {
     "style": "fewShot",
@@ -585,7 +729,7 @@
     "stopReason": "end_turn",
     "inputTokens": 416,
     "outputToken": 4,
-    "ms": 1019
+    "ms": 2058
   },
   {
     "style": "fewShot",
@@ -597,7 +741,7 @@
     "stopReason": "end_turn",
     "inputTokens": 416,
     "outputToken": 4,
-    "ms": 1019
+    "ms": 1125
   },
   {
     "style": "fewShot",
@@ -609,7 +753,7 @@
     "stopReason": "end_turn",
     "inputTokens": 416,
     "outputToken": 4,
-    "ms": 1019
+    "ms": 1060
   },
   {
     "style": "fewShot",
@@ -621,7 +765,7 @@
     "stopReason": "end_turn",
     "inputTokens": 417,
     "outputToken": 4,
-    "ms": 1388
+    "ms": 911
   },
   {
     "style": "fewShot",
@@ -633,7 +777,7 @@
     "stopReason": "end_turn",
     "inputTokens": 417,
     "outputToken": 4,
-    "ms": 1917
+    "ms": 868
   },
   {
     "style": "fewShot",
@@ -645,7 +789,7 @@
     "stopReason": "end_turn",
     "inputTokens": 417,
     "outputToken": 4,
-    "ms": 1388
+    "ms": 874
   },
   {
     "style": "fewShot",
@@ -657,7 +801,7 @@
     "stopReason": "end_turn",
     "inputTokens": 421,
     "outputToken": 6,
-    "ms": 1099
+    "ms": 1195
   },
   {
     "style": "fewShot",
@@ -669,7 +813,7 @@
     "stopReason": "end_turn",
     "inputTokens": 421,
     "outputToken": 6,
-    "ms": 2445
+    "ms": 1195
   },
   {
     "style": "fewShot",
@@ -681,7 +825,7 @@
     "stopReason": "end_turn",
     "inputTokens": 421,
     "outputToken": 6,
-    "ms": 1984
+    "ms": 1195
   },
   {
     "style": "fewShot",
@@ -693,7 +837,7 @@
     "stopReason": "end_turn",
     "inputTokens": 412,
     "outputToken": 5,
-    "ms": 4182
+    "ms": 843
   },
   {
     "style": "fewShot",
@@ -705,7 +849,7 @@
     "stopReason": "end_turn",
     "inputTokens": 412,
     "outputToken": 5,
-    "ms": 4184
+    "ms": 1018
   },
   {
     "style": "fewShot",
@@ -717,7 +861,7 @@
     "stopReason": "end_turn",
     "inputTokens": 412,
     "outputToken": 5,
-    "ms": 4184
+    "ms": 857
   },
   {
     "style": "fewShot",
@@ -729,7 +873,7 @@
     "stopReason": "end_turn",
     "inputTokens": 418,
     "outputToken": 4,
-    "ms": 1023
+    "ms": 952
   },
   {
     "style": "fewShot",
@@ -741,7 +885,7 @@
     "stopReason": "end_turn",
     "inputTokens": 418,
     "outputToken": 4,
-    "ms": 1558
+    "ms": 913
   },
   {
     "style": "fewShot",
@@ -753,7 +897,7 @@
     "stopReason": "end_turn",
     "inputTokens": 418,
     "outputToken": 4,
-    "ms": 4016
+    "ms": 1140
   },
   {
     "style": "fewShot",
@@ -765,7 +909,7 @@
     "stopReason": "end_turn",
     "inputTokens": 425,
     "outputToken": 4,
-    "ms": 1300
+    "ms": 959
   },
   {
     "style": "fewShot",
@@ -777,7 +921,7 @@
     "stopReason": "end_turn",
     "inputTokens": 425,
     "outputToken": 4,
-    "ms": 1300
+    "ms": 852
   },
   {
     "style": "fewShot",
@@ -789,7 +933,7 @@
     "stopReason": "end_turn",
     "inputTokens": 425,
     "outputToken": 4,
-    "ms": 1301
+    "ms": 860
   },
   {
     "style": "fewShot",
@@ -801,7 +945,7 @@
     "stopReason": "end_turn",
     "inputTokens": 426,
     "outputToken": 4,
-    "ms": 1606
+    "ms": 917
   },
   {
     "style": "fewShot",
@@ -813,7 +957,7 @@
     "stopReason": "end_turn",
     "inputTokens": 426,
     "outputToken": 4,
-    "ms": 2057
+    "ms": 1065
   },
   {
     "style": "fewShot",
@@ -825,19 +969,7 @@
     "stopReason": "end_turn",
     "inputTokens": 426,
     "outputToken": 4,
-    "ms": 1168
-  },
-  {
-    "style": "fewShot",
-    "text": "It doesn't work.",
-    "expected": "general_question",
-    "reply": "general_question",
-    "label": "general_question",
-    "strict": true,
-    "stopReason": "end_turn",
-    "inputTokens": 409,
-    "outputToken": 150,
-    "ms": 1956
+    "ms": 1043
   },
   {
     "style": "fewShot",
@@ -849,7 +981,7 @@
     "stopReason": "end_turn",
     "inputTokens": 409,
     "outputToken": 5,
-    "ms": 3141
+    "ms": 1085
   },
   {
     "style": "fewShot",
@@ -861,6 +993,450 @@
     "stopReason": "end_turn",
     "inputTokens": 409,
     "outputToken": 5,
-    "ms": 1598
+    "ms": 1147
+  },
+  {
+    "style": "fewShot",
+    "text": "It doesn't work.",
+    "expected": "general_question",
+    "reply": "general_question",
+    "label": "general_question",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 409,
+    "outputToken": 5,
+    "ms": 1085
+  },
+  {
+    "style": "fewShot",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 412,
+    "outputToken": 197,
+    "ms": 1712
+  },
+  {
+    "style": "fewShot",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 412,
+    "outputToken": 4,
+    "ms": 1039
+  },
+  {
+    "style": "fewShot",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 412,
+    "outputToken": 4,
+    "ms": 1069
+  },
+  {
+    "style": "fewShot",
+    "text": "Will you ever support Apple Watch?",
+    "expected": "general_question",
+    "reply": "feature_request",
+    "label": "feature_request",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 415,
+    "outputToken": 6,
+    "ms": 1368
+  },
+  {
+    "style": "fewShot",
+    "text": "Will you ever support Apple Watch?",
+    "expected": "general_question",
+    "reply": "feature_request",
+    "label": "feature_request",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 415,
+    "outputToken": 6,
+    "ms": 968
+  },
+  {
+    "style": "fewShot",
+    "text": "Will you ever support Apple Watch?",
+    "expected": "general_question",
+    "reply": "feature_request",
+    "label": "feature_request",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 415,
+    "outputToken": 6,
+    "ms": 1368
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "I was charged twice for my subscription this month.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 61,
+    "outputToken": 4,
+    "ms": 990
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "I was charged twice for my subscription this month.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 61,
+    "outputToken": 4,
+    "ms": 2333
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "I was charged twice for my subscription this month.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 61,
+    "outputToken": 4,
+    "ms": 2333
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "The app crashes every time I open the camera screen.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 62,
+    "outputToken": 4,
+    "ms": 1159
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "The app crashes every time I open the camera screen.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 62,
+    "outputToken": 4,
+    "ms": 1159
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "The app crashes every time I open the camera screen.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 62,
+    "outputToken": 4,
+    "ms": 1430
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Could you add dark mode? My eyes hurt at night.",
+    "expected": "feature_request",
+    "reply": "feature_request",
+    "label": "feature_request",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 66,
+    "outputToken": 6,
+    "ms": 938
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Could you add dark mode? My eyes hurt at night.",
+    "expected": "feature_request",
+    "reply": "feature_request",
+    "label": "feature_request",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 66,
+    "outputToken": 6,
+    "ms": 937
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Could you add dark mode? My eyes hurt at night.",
+    "expected": "feature_request",
+    "reply": "feature_request",
+    "label": "feature_request",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 66,
+    "outputToken": 6,
+    "ms": 937
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "How do I change my profile photo?",
+    "expected": "general_question",
+    "reply": "general_question",
+    "label": "general_question",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 57,
+    "outputToken": 5,
+    "ms": 968
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "How do I change my profile photo?",
+    "expected": "general_question",
+    "reply": "general_question",
+    "label": "general_question",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 57,
+    "outputToken": 5,
+    "ms": 975
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "How do I change my profile photo?",
+    "expected": "general_question",
+    "reply": "general_question",
+    "label": "general_question",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 57,
+    "outputToken": 5,
+    "ms": 1319
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Please refund me, and also the export button does nothing.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 63,
+    "outputToken": 4,
+    "ms": 1027
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Please refund me, and also the export button does nothing.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 63,
+    "outputToken": 4,
+    "ms": 1026
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Please refund me, and also the export button does nothing.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 63,
+    "outputToken": 4,
+    "ms": 1065
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Mera payment cut gaya lekin subscription active nahi hui.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 70,
+    "outputToken": 4,
+    "ms": 1050
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Mera payment cut gaya lekin subscription active nahi hui.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 70,
+    "outputToken": 4,
+    "ms": 889
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Mera payment cut gaya lekin subscription active nahi hui.",
+    "expected": "billing",
+    "reply": "billing",
+    "label": "billing",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 70,
+    "outputToken": 4,
+    "ms": 1313
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 71,
+    "outputToken": 4,
+    "ms": 1018
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 71,
+    "outputToken": 4,
+    "ms": 996
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Great, another update that deletes my saved drafts. Thanks a lot.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 71,
+    "outputToken": 4,
+    "ms": 1213
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "It doesn't work.",
+    "expected": "general_question",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 54,
+    "outputToken": 4,
+    "ms": 843
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "It doesn't work.",
+    "expected": "general_question",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 54,
+    "outputToken": 4,
+    "ms": 843
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "It doesn't work.",
+    "expected": "general_question",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 54,
+    "outputToken": 4,
+    "ms": 916
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 57,
+    "outputToken": 4,
+    "ms": 1352
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 57,
+    "outputToken": 4,
+    "ms": 1073
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "The refund button is greyed out.",
+    "expected": "bug",
+    "reply": "bug",
+    "label": "bug",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 57,
+    "outputToken": 4,
+    "ms": 957
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Will you ever support Apple Watch?",
+    "expected": "general_question",
+    "reply": "feature_request",
+    "label": "feature_request",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 60,
+    "outputToken": 6,
+    "ms": 926
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Will you ever support Apple Watch?",
+    "expected": "general_question",
+    "reply": "feature_request",
+    "label": "feature_request",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 60,
+    "outputToken": 6,
+    "ms": 1508
+  },
+  {
+    "style": "plainWithLabels",
+    "text": "Will you ever support Apple Watch?",
+    "expected": "general_question",
+    "reply": "feature_request",
+    "label": "feature_request",
+    "strict": true,
+    "stopReason": "end_turn",
+    "inputTokens": 60,
+    "outputToken": 6,
+    "ms": 797
   }
 ]

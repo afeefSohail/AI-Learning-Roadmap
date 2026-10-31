@@ -5,7 +5,6 @@ import Anthropic from "@anthropic-ai/sdk";
 import { writeFileSync } from "node:fs";
 import { cases } from "./cases";
 import { LABELS, templates, type Label, type Style } from "./templates";
-import { file } from "zod";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const MODEL = "claude-haiku-5-5";
@@ -13,13 +12,14 @@ const REPEATS = 3; // same input, several runs, to check consistency
 const PRICE_IN = 0.10; // USD per million tokens
 const PRICE_OUT = 0.50;
 
+// Lenient parse: exactly one label mentioned anywhere in the reply
 function parseLabel(reply: string): Label | null {
   const found = LABELS.filter((l) => new RegExp(`\\b${l}\\b`, "i").test(reply));
   return found.length === 1 ? found[0] : null;
 }
 
 async function classify(style: Style, text: string) {
-  const prompt = templates[style](text);
+  const prompt = templates[style](text) // const templates: Record<Style, (messaging: string) => Prompt>
   const start = performance.now();
   const response = await client.messages.create({
     model: MODEL,

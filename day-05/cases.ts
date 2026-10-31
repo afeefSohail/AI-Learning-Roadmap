@@ -1,5 +1,3 @@
-"use strict";
-
 import { Label } from "./templates";
 
 export const cases: { text: string; expected: Label; note: string }[] = [
@@ -43,4 +41,14 @@ export const cases: { text: string; expected: Label; note: string }[] = [
     expected: "general_question",
     note: "vague: only the rules say what to do",
   },
+  {
+    text: "The refund button is greyed out.",
+    expected: "bug",
+    note: "boundary: billing vs bug",
+  },
+  {
+    text: "Will you ever support Apple Watch?",
+    expected: "general_question",
+    note: "boundary: feature_request vs general_question",
+  }
 ];
