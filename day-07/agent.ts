@@ -92,6 +92,7 @@ export async function runAgent(
         step,
       );
 
+    // prints it only when a single step contains more than one tool call:  
     if (toolUses.length > 1)
       console.log(`  (${toolUses.length} tool calls in this step)`);
 
