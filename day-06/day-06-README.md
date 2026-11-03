@@ -8,8 +8,13 @@
 - `ask.ts`: asks one question, runs one tool round trip, and prints every step with token usage and cost.
 
 ```bash
-npx tsx day-06/ask.ts "What is 1847 times 392?"
-NO_TOOLS=1 npx tsx day-06/ask.ts "What is 1847 times 392?"   # same question without tools
+- npx tsx day-06/ask.ts "What is 1847 times 392?"
+- NO_TOOLS=1 npx tsx day-06/ask.ts "What is 1847 times 392?"   # same question without tools
+- NO_TOOLS=0 npx tsx day-06/ask.ts "What is the capital of France?" 
+- NO_TOOLS=0 npx tsx day-06/ask.ts "What time is it in Tokyo?"  
+- NO_TOOLS=0 npx tsx day-06/ask.ts "What time is it in Lahore, and what is 15% of 2480?"
+- NO_TOOLS=0 npx tsx day-06/ask.ts "What is (12 + 8) times 5?"
+- NO_TOOLS=0 npx tsx day-06/ask.ts "What is 10 divided by 0?"
 ```
 
 ## Key idea: the model never runs anything
@@ -108,3 +113,5 @@ Replace the single round trip with a loop: keep going while `stop_reason === "to
 
 - [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)
 - [How to implement tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use)
+- [Handle Tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls)
+- [Tutorial: Build a tool-using agent](https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent)

@@ -1,6 +1,25 @@
 import { input, z, ZodAny } from "zod";
 import type Anthropic from "@anthropic-ai/sdk";
 
+//   tools: [
+//     {
+//       name: "get_weather",
+//       description: "Get the current weather in a given location",
+//       input_schema: {
+//         type: "object",
+//         properties: {
+//           location: {
+//             type: "string",
+//             description: "The city and state, e.g. San Francisco, CA"
+//           }
+//         },
+//         required: ["location"]
+//       }
+//     }
+//   ],
+//   tool_choice: { type: "tool", name: "get_weather" },
+//   messages: [{ role: "user", content: "What's the weather like in San Francisco?" }]
+
 function defineTool<Schema extends z.ZodType>(
   name: string,
   description: string,
@@ -48,25 +67,6 @@ const getCurrentTime = defineTool(
 );
 
 const tools = [calculator, getCurrentTime];
-
-//   tools: [
-//     {
-//       name: "get_weather",
-//       description: "Get the current weather in a given location",
-//       input_schema: {
-//         type: "object",
-//         properties: {
-//           location: {
-//             type: "string",
-//             description: "The city and state, e.g. San Francisco, CA"
-//           }
-//         },
-//         required: ["location"]
-//       }
-//     }
-//   ],
-//   tool_choice: { type: "tool", name: "get_weather" },
-//   messages: [{ role: "user", content: "What's the weather like in San Francisco?" }]
 
 // What we send to the API: one Zod schema is the source of truth
 export const toolDefinitions: Anthropic.Tool[] = tools.map((tool) => {
