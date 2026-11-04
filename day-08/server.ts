@@ -34,18 +34,14 @@ const ChatRequest = z
     (block) => block.messages[block.messages.length - 1].role === "user",
     {
       message: "The last message must be from the user.",
-      path: ["messages"],
+      path: ["messages"], // propertyKey to which the error will be attached
     },
   );
 
 // Express Server
 const app = express();
-app.use(express.json({ limit: "50kb" }));
-app.use(express.static(fileURLToPath(new URL("./public", import.meta.url))));
-
-app.get("/health", (_req, res) => {
-  res.json({ ok: true });
-});
+app.use(express.json({ limit: "50kb" })); // caps the size of a JSON request body at 50 KB
+app.use(express.static(fileURLToPath(new URL("./public", import.meta.url)))); // load the static assets from the public folder
 
 function sendEvent(response: Response, event: string, data: unknown) {
   if (response.writableEnded || response.destroyed) return;
