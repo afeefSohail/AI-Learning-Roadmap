@@ -2,6 +2,14 @@
 
 **Week 2: Tool calling and APIs**
 
+## What I read before coding
+
+1. [How to implement tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use) (focus on parallel tool use): how several `tool_use` blocks arrive in one reply and how to return all the results in one user message; how to tell the model to wait when one call depends on another; what to do when `stop_reason` is `max_tokens` during a tool call or `refusal`.
+2. [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents): an agent is a loop of model, tool call and result, and Anthropic's advice is to start simple. I skipped the workflow patterns, which come in Weeks 5 and 6.
+3. [Writing tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents): tool descriptions, return formats and error messages that help the model recover.
+
+**Questions I answered before coding:** when the loop stops, what happens at the step limit, parallel or sequential tool calls, and what to log per step. The answers are in "Design decisions" below.
+
 ## What I built
 
 - `tools.ts`: Day 6's two tools (`calculator`, `get_current_time`) plus `get_exchange_rate`. The rates are made up, so the model cannot know them from training.
@@ -125,9 +133,3 @@ The INR question with no tool call used 321 output tokens for a short refusal. O
 ## Next (Day 8)
 
 Put `runAgent` behind an Express endpoint so a request comes in, the loop runs, and the answer goes back as JSON.
-
-## Reading
-
-- [How to implement tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use)
-- [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
-- [Writing tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents)

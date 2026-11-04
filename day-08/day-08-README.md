@@ -2,6 +2,15 @@
 
 **Week 2: Tool calling and APIs**
 
+## What I read before coding
+
+1. [Express hello world](https://expressjs.com/en/starter/hello-world.html) and [Routing](https://expressjs.com/en/guide/routing.html): `express.json()` fills `req.body`; a `POST` handler uses `res.json` and `res.status`.
+2. [Express error handling](https://expressjs.com/en/guide/error-handling.html): in Express 5 a rejected promise or a thrown error in an `async` handler goes to the error handler automatically. The four-argument `(err, req, res, next)` function is the error handler.
+3. [Using server-sent events (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events): the headers (`Content-Type: text/event-stream`, `Cache-Control: no-cache`, `Connection: keep-alive`), the message format (`data:` lines ending with a blank line, optional `event:` names), and that `EventSource` only supports `GET`, so a `POST` endpoint is read with `fetch` or `curl -N`.
+4. [Streaming Messages](https://platform.claude.com/docs/en/build-with-claude/streaming), re-read: `stream.on("text", ...)` and `finalMessage()`.
+
+**Questions I answered before coding:** where the history lives, which status codes to use, what happens when the client disconnects, who may set the model and system prompt, and how to report an error after the stream has started. The answers are in "Design decisions" below.
+
 ## What I built
 
 - `server.ts`: an Express 5 server with `POST /chat` (streams the reply as server-sent events) and `GET /health`.
@@ -132,10 +141,3 @@ A client trying to send its own `model` gets a 400 instead of silently being ign
 ## Next (Day 9)
 
 Authentication and saved conversations: a user logs in, `/chat` takes a conversation id, and the history is stored on the server.
-
-## Reading
-
-- [Express hello world](https://expressjs.com/en/starter/hello-world.html) and [Routing](https://expressjs.com/en/guide/routing.html)
-- [Express error handling](https://expressjs.com/en/guide/error-handling.html)
-- [Using server-sent events (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)
-- [Streaming Messages](https://platform.claude.com/docs/en/build-with-claude/streaming)

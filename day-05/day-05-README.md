@@ -2,6 +2,19 @@
 
 **Week 1: LLM foundations in TypeScript**
 
+## What I read before coding
+
+1. [Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) (45 minutes, the "General principles" section):
+   - Be clear and direct. Test: show the prompt to a colleague with no context. If they would be confused, the model will be too.
+   - Examples: 3 to 5 relevant, varied examples in `<example>` tags steer format and tone better than long descriptions.
+   - XML tags: consistent, descriptive tags separate instructions, context and inputs.
+   - A one-sentence role in the system prompt helps.
+2. [Use examples (multishot prompting)](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting) and [Use XML tags to structure your prompts](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags) (15 minutes each).
+
+The docs have no page on prompt templates (a template is a TypeScript function that returns a string) or on testing prompts. I compared styles with real runs.
+
+**Brainstorm before coding:** pick one task with a clear right answer (support-message classification), define what "better" means, write 8 or more test inputs including tricky ones, and choose the styles to compare.
+
 ## What I built
 
 Four prompt styles run against the same task, scored with real numbers.
@@ -110,9 +123,3 @@ All the other errors in the list were side effects of that one line failing to p
 - Rules decide ambiguous cases. Examples show judgment but cost tokens on every call.
 - Check the usage numbers, not just the text.
 - Decide what "correct" means before running the test.
-
-## Reading
-
-- [Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)
-- [Use examples (multishot prompting)](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting)
-- [Use XML tags to structure your prompts](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags)

@@ -2,6 +2,16 @@
 
 **Week 1: LLM foundations in TypeScript**
 
+## What I read before coding
+
+**Before the project (Day 0):** Andrej Karpathy's "Intro to Large Language Models" (YouTube, about 1 hour); tokens and context windows; the API is stateless; max tokens and stop reasons; a skim of Anthropic's prompt engineering overview.
+
+**For today, in this order:**
+
+1. [Context windows](https://platform.claude.com/docs/en/build-with-claude/context-windows): a context window is everything the model can see in one request, so the whole conversation has to fit inside it. Each turn adds to the total.
+2. [Token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting): measure input tokens before sending a request with `countTokens`.
+3. [Pricing](https://platform.claude.com/docs/en/about-claude/pricing): price per million input and output tokens for each model. Output tokens cost more than input tokens, and the Haiku tier is the cheapest.
+
 ## What I built
 
 - `hello-llm.ts`: sends one message to Claude Haiku 5.5 with the Anthropic TypeScript SDK and prints the reply, the stop reason and the token usage.
@@ -44,9 +54,3 @@ messages.0: use the top-level 'system' parameter for the initial system prompt
 ```
 
 I put `{ role: "system", ... }` inside the `messages` array (the OpenAI style). In the Anthropic API the system prompt is a separate top-level `system` field, and `messages` holds only `user` and `assistant` turns.
-
-## Reading
-
-- [Context windows](https://platform.claude.com/docs/en/build-with-claude/context-windows)
-- [Token counting](https://platform.claude.com/docs/en/build-with-claude/token-counting)
-- [Pricing](https://platform.claude.com/docs/en/about-claude/pricing)

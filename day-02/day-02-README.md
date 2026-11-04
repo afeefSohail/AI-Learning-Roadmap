@@ -2,6 +2,12 @@
 
 **Week 1: LLM foundations in TypeScript**
 
+## What I read before coding
+
+1. [Using the Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages): a conversation is a list of `user` and `assistant` messages, and I send the full list on every call because the API is stateless.
+2. [System prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/system-prompts): the system prompt goes in the top-level `system` field, not inside `messages`.
+3. [Claude Haiku 5.5 migration guide](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide): this model does not accept `temperature`, `top_p` or `top_k`.
+
 ## What I built
 
 `chat.ts`: a terminal chat with Claude Haiku 5.5 that keeps the conversation history, uses a system prompt, and prints token usage and cost after every turn.
@@ -85,9 +91,3 @@ One short (~40-word) reply used 199 output tokens. When thinking is on (`output_
 | `404 not_found_error: model: claude-Haiku-5-5` | Model IDs are case-sensitive | `claude-haiku-5-5` |
 
 Error codes: **401** = API key problem, **404 + model** = wrong model name, **400** = something wrong in the request.
-
-## Reading
-
-- [Using the Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages)
-- [System prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/system-prompts)
-- [Claude Haiku 5.5 migration guide](https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide)

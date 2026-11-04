@@ -2,6 +2,16 @@
 
 **Week 1: LLM foundations in TypeScript**
 
+## What I read before coding
+
+1. **Zod** ([zod.dev](https://zod.dev), basic usage and defining schemas, 30 minutes): `z.object`, `z.string`, `z.number`, `z.enum`, `z.array`, `.optional()`; `z.infer` turns a schema into a TypeScript type; `.safeParse()` returns `{ success, data | error }` instead of throwing, which fits model output because invalid output is normal; `z.toJSONSchema` makes one schema serve both the API and my validation.
+2. [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs) (20 minutes): pass a JSON Schema in `output_config.format`. Number limits like `minimum`/`maximum` and string limits like `minLength` are not supported, so Zod enforces those after the reply. Check `stop_reason` before parsing: `max_tokens` means the JSON may be cut off and `refusal` means it may not match the schema.
+3. **The validate and retry pattern** (10 minutes): ask for JSON, `safeParse` it, and on failure send back the bad output plus the Zod errors, with a retry limit. Two articles on it:
+   - [Type-safe LLM outputs with Zod](https://dev.to/thegdsks/type-safe-llm-outputs-with-zod-stop-guessing-what-the-model-returns-544e): the "schema repair" section, in TypeScript with the raw SDK. Repair works better than a plain retry because the model sees what it got wrong.
+   - [Instructor: reask validation](https://git.kennethreitz.org/kennethreitz/instructor/src/commit/20c50f0fe69d591fa8e64dfe05902d112b059782/docs/concepts/reask_validation.md): an older Python doc, but the idea is clear: failed reply back into the history, a new user message with the exact error, and a `max_retries` limit.
+
+Backoff-and-retry is a different pattern (network and rate limits) and not what this day is about.
+
 ## What I built
 
 - `schemas.ts`: a Zod `ReceiptSchema` (merchant, date, currency, items, tax, total, `isReceipt`) plus rules JSON Schema can't express.
@@ -61,10 +71,6 @@ Single runs, so output token counts vary from run to run.
 - The discount input (items total 11, printed total 9) failed the "items + tax = total" rule in both modes, and the repair succeeded on the second attempt.
 - The model fixed it by adding an item named `discount` with price -2. The validator passes, but a discount isn't a product. **The loop satisfies the validator, not necessarily the truth.** A cleaner design would be a separate `discount` field in the schema.
 - A repair is expensive: 1,052–1,459 input tokens vs 412–679 for a single attempt, because the retry resends the original prompt, the bad answer and the error.
-- Failure message sent back to the model:
-  `(root): items (quantity × price) plus tax must equal total`
-  (`(root)` appears because the rule is on the whole object. Adding `path: ["total"]` names a field.)
-- The repair was the same in both modes and in repeated runs: a `discount` item with price -2.
 
 ### 4. Other notes
 
@@ -81,10 +87,3 @@ Single runs, so output token counts vary from run to run.
 | Both modes gave identical token counts | `useSchema: true` was hard-coded in the call, so prompt-only never ran | Pass the loop variable `{ useSchema }`. A debug print found it |
 
 The last one means my first comparison wasn't real. Always check that a flag actually reaches the code it's meant to change.
-
-## Reading
-
-- [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
-- [Zod](https://zod.dev/api)
-- [Type-safe LLM outputs with Zod](https://dev.to/thegdsks/type-safe-llm-outputs-with-zod-stop-guessing-what-the-model-returns-544e)
-- [Instructor: reask validation](https://git.kennethreitz.org/kennethreitz/instructor/src/commit/20c50f0fe69d591fa8e64dfe05902d112b059782/docs/concepts/reask_validation.md)

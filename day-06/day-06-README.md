@@ -2,19 +2,29 @@
 
 **Week 2: Tool calling and APIs**
 
+## What I read before coding
+
+1. [How tool use works](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works): the model never runs anything. It asks for a tool call, my code runs it and sends the result back, and the exchange repeats while `stop_reason` is `"tool_use"`.
+2. [Define tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools): a tool has a `name`, a `description` and an `input_schema` (JSON Schema). The description matters most, because the model decides when to call the tool from it.
+3. [Handle tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls): the rules that cause real errors:
+   - Each `tool_result` carries the `tool_use_id` of its `tool_use` block.
+   - The user message with the results must immediately follow the assistant message with the tool calls.
+   - In that message, `tool_result` blocks come first and any text after them, or the API returns a 400.
+   - On failure, set `is_error: true` with a helpful message.
+4. Optional: [Tutorial: Build a tool-using agent](https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent) (skimmed, not copied; the agent loop is Day 7).
+
+Skipped on purpose: server-side tools, computer use and programmatic tool calling. Also noted: tool results can contain text an attacker controls, so keep them inside `tool_result` blocks and never in the system prompt.
+
+**Planned before coding:** a calculator with four operations (no `eval`) and a time tool that takes a time zone. Test questions: one that needs a tool, one that does not, and one that needs both.
+
 ## What I built
 
 - `tools.ts`: two tools, `calculator` (add, subtract, multiply, divide) and `get_current_time` (any IANA time zone). Each tool is defined once with a Zod schema. The same definition produces the JSON Schema sent to the API and validates the input the model sends back. `executeTool` runs a tool and returns an error result instead of crashing if the input is invalid or the tool throws.
 - `ask.ts`: asks one question, runs one tool round trip, and prints every step with token usage and cost.
 
 ```bash
-- npx tsx day-06/ask.ts "What is 1847 times 392?"
-- NO_TOOLS=1 npx tsx day-06/ask.ts "What is 1847 times 392?"   # same question without tools
-- NO_TOOLS=0 npx tsx day-06/ask.ts "What is the capital of France?" 
-- NO_TOOLS=0 npx tsx day-06/ask.ts "What time is it in Tokyo?"  
-- NO_TOOLS=0 npx tsx day-06/ask.ts "What time is it in Lahore, and what is 15% of 2480?"
-- NO_TOOLS=0 npx tsx day-06/ask.ts "What is (12 + 8) times 5?"
-- NO_TOOLS=0 npx tsx day-06/ask.ts "What is 10 divided by 0?"
+npx tsx day-06/ask.ts "What is 1847 times 392?"
+NO_TOOLS=1 npx tsx day-06/ask.ts "What is 1847 times 392?"   # same question without tools
 ```
 
 ## Key idea: the model never runs anything
@@ -108,10 +118,3 @@ Lesson: when nothing happens, check the token counts first. They show what was a
 ## Next (Day 7)
 
 Replace the single round trip with a loop: keep going while `stop_reason === "tool_use"`, handle parallel calls, add a maximum step count, and log each step.
-
-## Reading
-
-- [Tool use overview](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)
-- [How to implement tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/implement-tool-use)
-- [Handle Tool calls](https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls)
-- [Tutorial: Build a tool-using agent](https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent)

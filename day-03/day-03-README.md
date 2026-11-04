@@ -2,6 +2,11 @@
 
 **Week 1: LLM foundations in TypeScript**
 
+## What I read before coding
+
+- [Streaming Messages](https://platform.claude.com/docs/en/build-with-claude/streaming): the events arrive in a fixed order (`message_start`, `content_block_start`, `content_block_delta` many times, `content_block_stop`, `message_delta`, `message_stop`), and the text pieces are in the `text_delta` events.
+- Background from Day 0: `async` iterators and `for await...of` (streams arrive this way) and server-sent events.
+
 ## What I built
 
 - `stream-basics.ts`: sends the same prompt twice, once without streaming and once with streaming, prints every raw stream event, and measures time to first text and total time.
@@ -32,7 +37,7 @@ message_start → content_block_start → content_block_delta × many → conten
 ```
 
 - `message_start` carries the input token count.
-- `content_block_delta` (with `text_delta/input_json_delta/thinking_delta`) carries the pieces of text.
+- `content_block_delta` (with `text_delta`) carries the pieces of text.
 - `message_delta` near the end carries the `stop_reason` and the final output token count.
 
 ## Experiments
@@ -75,7 +80,3 @@ message_start → content_block_start → content_block_delta × many → conten
 
 - Asked "What were you just saying?" with no history, the model said it had not said anything yet. It has no memory between calls.
 - When I asked for a long story, the model once replied by asking whether I wanted the full 500 words instead of writing it. A clearer prompt gets a direct answer.
-
-## Reading
-
-- [Streaming Messages](https://platform.claude.com/docs/en/build-with-claude/streaming)
