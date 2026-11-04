@@ -26,6 +26,34 @@ if the loop ends without returning: step_limit
 
 Three ways out: `end_turn` (done), a non-`end_turn` stop such as `max_tokens` or `refusal` (stopped), and the step limit. The step limit is my code's job. The API does not have one, so without it a confused model could loop and bill me every turn.
 
+## Design decisions (answered before coding)
+
+| Question | Decision |
+|---|---|
+| When does the loop stop? | Three exits. `end_turn` is the only success. Hitting the step limit and an error are failures. |
+| What happens at the step limit? | Stop calling the API and return a clear message with the status `max_steps_reached`, never a success. The message should say what was attempted, what was completed, what remains and the last tool result. |
+| Several tool calls in one reply: parallel or one after another? | Read-only, independent calls can run in parallel because it is faster. Calls with side effects (sending, paying, deleting) run one at a time, optionally stopping at the first failure and skipping the rest. Either way, return all `tool_result` blocks in one user message, matched by `tool_use_id`. Every `tool_use` needs a result, even an error or "skipped". |
+| What goes in the log for each step? | See the list below. |
+
+**A production log per step:**
+- `run_id`, step number and timestamp
+- the model's `stop_reason` and the model latency for the step
+- per tool call: `tool_use_id`, tool name, input (redacted), result (truncated, with its size), `is_error`, duration, and whether it ran in parallel
+- tokens: input, output, cache read, cache write, a running total and the estimated cost
+- the final status: `end_turn`, `max_steps`, `error`, `timeout` or `budget`
+
+### What my `agent.ts` actually does
+
+| Decision | My code today |
+|---|---|
+| Success vs failure | Returns `done` for `end_turn`, `stopped` for any other stop reason (such as `max_tokens` or `refusal`) and `step_limit` at the limit. |
+| Message at the step limit | Only "I could not finish within N steps." It does not yet say what was done or what remains. |
+| Errors | An API error throws out of `runAgent` and is not caught, so there is no `error` status yet. |
+| Parallel or sequential | Always sequential, in a `for` loop, which is the safe choice but slower. All results still go back in one user message. |
+| Logging | Step number, `stop_reason`, input/output tokens, then per tool call the name, input and truncated result. No `run_id`, timing, cache tokens or running cost per step. |
+
+The list above is where the loop should go next. Today it is the minimum that is correct.
+
 ## Runs
 
 | Question | Steps | Tool calls | Tokens in / out | Cost |
