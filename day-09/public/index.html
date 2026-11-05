@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    #log { white-space: pre-wrap; border: 1px solid #ccc; border-radius: 8px; padding: 1rem; min-height: 200px; }
+    .me { color: #555; }
+    .err { color: #b00020; }
+    form, .row { display: flex; gap: .5rem; margin-top: 1rem; }
+    input { flex: 1; padding: .5rem; }
+    small { color: #666; }
+  </style>
+</head>
+<body>
+  <h1>Chat</h1>
+  <div class="row">
+    <input id="token" placeholder="Paste your access token" />
+    <button id="new" type="button">New chat</button>
+  </div>
+  <p><small id="conv">No conversation yet.</small></p>
+  <div id="log"></div>
+  <form id="form">
+    <input id="text" autocomplete="off" placeholder="Say something" />
+    <button>Send</button>
+  </form>
+  <p id="usage"></p>
+
+<script>
+  let conversationId = null;
+  const log = document.getElementById("log");
+  const usage = document.getElementById("usage");
+  const conv = document.getElementById("conv");
+
+  function line(cls, text) {
+    const div = document.createElement("div");
+    div.className = cls;
+    div.textContent = text;
+    log.appendChild(div);
+    return div;
+  }
+
+  document.getElementById("new").addEventListener("click", () => {
+    conversationId = null;
+    log.textContent = "";
+    conv.textContent = "No conversation yet.";
+  });
+
+  document.getElementById("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const input = document.getElementById("text");
+    const text = input.value.trim();
+    const token = document.getElementById("token").value.trim();
+    if (!text) return;
+    input.value = "";
+    line("me", "You: " + text);
+
+    const res = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: "Bearer " + token },
+      body: JSON.stringify({ conversationId, message: text }),
+    });
+    if (!res.ok) {
+      line("err", "Error " + res.status + ": " + (await res.text()));
+      return;
+    }
+
+    const out = line("", "");
+    let reply = "";
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const parts = buffer.split("\n\n");
+      buffer = parts.pop();
+      for (const part of parts) {
+        let event = "message", data = "";
+        for (const l of part.split("\n")) {
+          if (l.startsWith("event: ")) event = l.slice(7);
+          else if (l.startsWith("data: ")) data += l.slice(6);
+        }
+        const payload = JSON.parse(data);
+        if (event === "conversation") {
+          conversationId = payload.conversationId;
+          conv.textContent = "Conversation: " + conversationId;
+        } else if (event === "text") {
+          reply += payload.text;
+          out.textContent = reply;
+        } else if (event === "done") {
+          usage.textContent = `${payload.input_tokens} in / ${payload.output_tokens} out | $${payload.cost.toFixed(7)}`;
+        } else if (event === "error") {
+          line("err", payload.message);
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
