@@ -5,7 +5,7 @@
 ## What I read before coding
 
 1. [Express: using middleware](https://expressjs.com/en/guide/using-middleware.html): middleware runs in order. `app.post("/chat", requireAuth, handler)` runs the check before the handler on that route only, and a middleware passes data on through the request or `res.locals`.
-2. [JWT introduction](https://jwt.io/introduction): a token is `header.payload.signature`. The server verifies the signature with the secret and needs no database call, and `exp` makes the token expire.
+2. [JWT introduction](https://jwt.io/introduction): a token is `header.payload.signature`. The server verifies the signature with the secret access key and needs no database call, and `exp` makes the token expire.
 3. **Prisma quickstart for PostgreSQL with TypeScript** ([prisma.io/docs](https://www.prisma.io/docs)). I used Prisma 7 (`^7.9.1`), where:
    - a driver adapter is required (`@prisma/adapter-pg`, passed as `new PrismaClient({ adapter })`)
    - `prisma.config.ts` at the project root holds the schema path, the migrations path and the database URL

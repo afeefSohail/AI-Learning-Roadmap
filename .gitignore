@@ -1,3 +1,8 @@
 node_modules
 # Keep environment variables out of version control
 .env
+# it has prisma realted files which made by this npx  
+day-09/generated
+
+# Ignore virtual environment folder for paython
+day-10/.venv
