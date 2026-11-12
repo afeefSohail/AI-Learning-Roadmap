@@ -1,0 +1,557 @@
+[
+  {
+    "id": "033343d9-762b-4ebf-ad0c-2b92791afff9",
+    "timestamp": "2026-11-12T13:36:18.881Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "initialize",
+      "params": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "sampling": {},
+          "elicitation": {
+            "form": {},
+            "url": {}
+          },
+          "roots": {
+            "listChanged": true
+          },
+          "tasks": {
+            "list": {},
+            "cancel": {},
+            "requests": {
+              "sampling": {
+                "createMessage": {}
+              },
+              "elicitation": {
+                "create": {}
+              }
+            }
+          },
+          "extensions": {
+            "io.modelcontextprotocol/tasks": {},
+            "io.modelcontextprotocol/ui": {
+              "mimeTypes": [
+                "text/html;profile=mcp-app"
+              ],
+              "elicitation": {}
+            },
+            "io.modelcontextprotocol/skills": {}
+          }
+        },
+        "clientInfo": {
+          "name": "mcp-inspector",
+          "version": "2.15.0"
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 0
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 0,
+      "result": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "tools": {
+            "listChanged": true
+          }
+        },
+        "serverInfo": {
+          "name": "exchange-rate",
+          "version": "1.0.0"
+        }
+      }
+    },
+    "duration": 1224
+  },
+  {
+    "id": "ef6a2eea-ec6d-4cda-a48f-601216e1c131",
+    "timestamp": "2026-11-12T13:36:20.114Z",
+    "direction": "notification",
+    "origin": "client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications/initialized"
+    }
+  },
+  {
+    "id": "a1e85016-df27-4745-a947-c534e00af8e9",
+    "timestamp": "2026-11-12T13:36:20.393Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/list",
+      "jsonrpc": "2.0",
+      "id": 1,
+      "params": {
+        "_meta": {
+          "progressToken": 1
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "tools": [
+          {
+            "name": "get_exchange_rate",
+            "title": "Exchange rate",
+            "description": "Returns the exchange rate for converting one unit of one currency into another, e.g. from USD to PKR. Supported currency codes: USD, PKR, EUR, GBP, JPY. Use this for any currency conversion; you cannot know the current rate otherwise.",
+            "inputSchema": {
+              "type": "object",
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "from": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert from, e.g. USD"
+                },
+                "to": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert to, e.g. PKR"
+                }
+              },
+              "required": [
+                "from",
+                "to"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "duration": 37
+  },
+  {
+    "id": "8f5eb2eb-1859-4a8a-99f1-7079bf82af01",
+    "timestamp": "2026-11-12T13:42:10.504Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/list",
+      "params": {
+        "_meta": {
+          "progressToken": 2
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 2
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "name": "get_exchange_rate",
+            "title": "Exchange rate",
+            "description": "Returns the exchange rate for converting one unit of one currency into another, e.g. from USD to PKR. Supported currency codes: USD, PKR, EUR, GBP, JPY. Use this for any currency conversion; you cannot know the current rate otherwise.",
+            "inputSchema": {
+              "type": "object",
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "from": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert from, e.g. USD"
+                },
+                "to": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert to, e.g. PKR"
+                }
+              },
+              "required": [
+                "from",
+                "to"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "duration": 290
+  },
+  {
+    "id": "38e31aa6-0b2a-497a-968e-c3e00e52b336",
+    "timestamp": "2026-11-12T13:42:10.518Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "prompts/list",
+      "params": {
+        "_meta": {
+          "progressToken": 3
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 3
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "error": {
+        "code": -32601,
+        "message": "Method not found"
+      }
+    },
+    "duration": 273
+  },
+  {
+    "id": "b42139ec-3b2e-4e86-84e8-21dc9ab5c96c",
+    "timestamp": "2026-11-12T13:42:10.519Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/list",
+      "params": {
+        "_meta": {
+          "progressToken": 4
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 4
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "error": {
+        "code": -32601,
+        "message": "Method not found"
+      }
+    },
+    "duration": 278
+  },
+  {
+    "id": "1056afd7-0b20-431c-af72-fd37ec4e49db",
+    "timestamp": "2026-11-12T13:42:12.614Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/list",
+      "params": {
+        "_meta": {
+          "progressToken": 5
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 5
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "tools": [
+          {
+            "name": "get_exchange_rate",
+            "title": "Exchange rate",
+            "description": "Returns the exchange rate for converting one unit of one currency into another, e.g. from USD to PKR. Supported currency codes: USD, PKR, EUR, GBP, JPY. Use this for any currency conversion; you cannot know the current rate otherwise.",
+            "inputSchema": {
+              "type": "object",
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "from": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert from, e.g. USD"
+                },
+                "to": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert to, e.g. PKR"
+                }
+              },
+              "required": [
+                "from",
+                "to"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "duration": 38246
+  },
+  {
+    "id": "2e5cf369-9ed2-4ce2-bc8d-301797556f87",
+    "timestamp": "2026-11-12T13:42:12.615Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "prompts/list",
+      "params": {
+        "_meta": {
+          "progressToken": 6
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 6
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "error": {
+        "code": -32601,
+        "message": "Method not found"
+      }
+    },
+    "duration": 38243
+  },
+  {
+    "id": "fe333345-3eb8-4301-a791-cbf205cd7e74",
+    "timestamp": "2026-11-12T13:42:12.615Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/list",
+      "params": {
+        "_meta": {
+          "progressToken": 7
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 7
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "error": {
+        "code": -32601,
+        "message": "Method not found"
+      }
+    },
+    "duration": 27
+  },
+  {
+    "id": "1f6737fe-9076-4683-8f33-7f3c576eee7d",
+    "timestamp": "2026-11-12T13:42:50.682Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "get_exchange_rate",
+        "arguments": {
+          "from": "USD",
+          "to": "PKR"
+        },
+        "_meta": {
+          "progressToken": 8
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 8
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "277.35"
+          }
+        ]
+      }
+    },
+    "duration": 179
+  },
+  {
+    "id": "038f5ab9-202d-4a88-8902-0c33fb6f7cd4",
+    "timestamp": "2026-11-12T13:43:48.984Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "get_exchange_rate",
+        "arguments": {
+          "from": "USD",
+          "to": "INR"
+        },
+        "_meta": {
+          "progressToken": 9
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 9
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 9,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Unknown currency: INR. Supported currencies: USD, PKR, EUR, GBP, JPY"
+          }
+        ],
+        "isError": true
+      }
+    },
+    "duration": 169
+  },
+  {
+    "id": "ad3a4d51-9513-489e-a371-0cd958ce584c",
+    "timestamp": "2026-11-12T13:44:30.019Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "get_exchange_rate",
+        "arguments": {
+          "from": "USD",
+          "to": "\"\""
+        },
+        "_meta": {
+          "progressToken": 10
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 10
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 10,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Unknown currency: \"\". Supported currencies: USD, PKR, EUR, GBP, JPY"
+          }
+        ],
+        "isError": true
+      }
+    },
+    "duration": 904046
+  },
+  {
+    "id": "bc850f98-24ac-42b8-9033-bdb7734eeda4",
+    "timestamp": "2026-11-12T13:44:40.604Z",
+    "direction": "notification",
+    "origin": "client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications/cancelled",
+      "params": {
+        "requestId": 10,
+        "reason": "Tool call cancelled by user"
+      }
+    }
+  },
+  {
+    "id": "d798bbfc-52a4-4ea9-a7f9-b2491f4f720d",
+    "timestamp": "2026-11-12T13:59:33.809Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "get_exchange_rate",
+        "arguments": {
+          "from": "USD",
+          "to": "PKR"
+        },
+        "_meta": {
+          "progressToken": 11
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 11
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 11,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "277.35"
+          }
+        ]
+      }
+    },
+    "duration": 260
+  },
+  {
+    "id": "29a9bf72-d12b-4392-a1a7-f3e3ea0561a0",
+    "timestamp": "2026-11-12T13:59:36.744Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "get_exchange_rate",
+        "arguments": {
+          "from": "USD",
+          "to": "PKR"
+        },
+        "_meta": {
+          "progressToken": 12
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 12
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 12,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "277.35"
+          }
+        ]
+      }
+    },
+    "duration": 18
+  },
+  {
+    "id": "8b60501f-96d8-4288-a701-05588bf79573",
+    "timestamp": "2026-11-12T14:00:12.699Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/list",
+      "params": {
+        "_meta": {
+          "progressToken": 13
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 13
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 13,
+      "result": {
+        "tools": [
+          {
+            "name": "get_exchange_rate",
+            "title": "Exchange rate",
+            "description": "Returns the exchange rate for converting one unit of one currency into another, e.g. from USD to PKR. Supported currency codes: USD, PKR, EUR, GBP, JPY. Use this for any currency conversion; you cannot know the current rate otherwise.",
+            "inputSchema": {
+              "type": "object",
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "from": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert from, e.g. USD"
+                },
+                "to": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert to, e.g. PKR"
+                }
+              },
+              "required": [
+                "from",
+                "to"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "duration": 134
+  }
+]
