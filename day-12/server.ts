@@ -33,7 +33,7 @@ function createServer(): McpServer {
         }
       }
       const rate = RATES_PER_USD[target]! / RATES_PER_USD[source]!;
-      return { content: [{ type: "text", text: String(rate) }] };
+      return { content: [{ type: "text", text: String(Number(rate.toPrecision(6))) }] };
     },
   );
 

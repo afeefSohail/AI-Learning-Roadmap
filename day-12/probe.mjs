@@ -5,6 +5,10 @@ const p = spawn("npx", ["tsx", "day-12/server.ts"], {
   stdio: ["pipe", "pipe", "inherit"],
 });
 
+// Server/Discover and Tools/List are the first two requests that every MCP Client should make
+// Server/Discover is like initial handshake, and Tools/List is to discover what tools the server has available
+// The _meta is a standard part of every request, and it contains information about the client and its capabilities
+// Client ask from MCP Server through Server/Discover what he can offer, and the server responds with its capabilities and supported features
 const meta = {
   "io.modelcontextprotocol/protocolVersion": "2026-07-28",
   "io.modelcontextprotocol/clientInfo": { name: "probe", version: "0" },
