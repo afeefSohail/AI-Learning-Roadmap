@@ -1,0 +1,414 @@
+[
+  {
+    "id": "5f969b73-6ba9-44f8-b64e-d5b851b42efd",
+    "timestamp": "2026-11-13T03:18:15.452Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "initialize",
+      "params": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "sampling": {},
+          "elicitation": {
+            "form": {},
+            "url": {}
+          },
+          "roots": {
+            "listChanged": true
+          },
+          "tasks": {
+            "list": {},
+            "cancel": {},
+            "requests": {
+              "sampling": {
+                "createMessage": {}
+              },
+              "elicitation": {
+                "create": {}
+              }
+            }
+          },
+          "extensions": {
+            "io.modelcontextprotocol/tasks": {},
+            "io.modelcontextprotocol/ui": {
+              "mimeTypes": [
+                "text/html;profile=mcp-app"
+              ],
+              "elicitation": {}
+            },
+            "io.modelcontextprotocol/skills": {}
+          }
+        },
+        "clientInfo": {
+          "name": "mcp-inspector",
+          "version": "2.15.0"
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 0
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 0,
+      "result": {
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "tools": {
+            "listChanged": true
+          },
+          "resources": {
+            "listChanged": true
+          },
+          "prompts": {
+            "listChanged": true
+          }
+        },
+        "serverInfo": {
+          "name": "exchange-rate",
+          "version": "2.0.0"
+        }
+      }
+    },
+    "duration": 1069
+  },
+  {
+    "id": "9555eac1-7559-48ae-b55c-6734f34d308f",
+    "timestamp": "2026-11-13T03:18:16.527Z",
+    "direction": "notification",
+    "origin": "client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications/initialized"
+    }
+  },
+  {
+    "id": "247ff845-bd03-4f4f-8255-7502ae9cbc30",
+    "timestamp": "2026-11-13T03:18:16.767Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/list",
+      "jsonrpc": "2.0",
+      "id": 1,
+      "params": {
+        "_meta": {
+          "progressToken": 1
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "resources": [
+          {
+            "uri": "rates://usd",
+            "name": "rates-table",
+            "title": "Exchange rates against USD",
+            "description": "The full table of made-up rates, one unit of USD in each currency.",
+            "mimeType": "application/json"
+          }
+        ]
+      }
+    },
+    "duration": 81
+  },
+  {
+    "id": "89657fb5-d45f-4fb5-acb1-c050d54e3790",
+    "timestamp": "2026-11-13T03:18:16.768Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/list",
+      "jsonrpc": "2.0",
+      "id": 2,
+      "params": {
+        "_meta": {
+          "progressToken": 2
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "name": "get_exchange_rate",
+            "title": "Exchange rate",
+            "description": "Returns the exchange rate for converting one unit of one currency into another, e.g. from USD to PKR. Supported currency codes: USD, PKR, EUR, GBP, JPY. Use this for any currency conversion; you cannot know the current rate otherwise.",
+            "inputSchema": {
+              "type": "object",
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "from": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert from, e.g. USD"
+                },
+                "to": {
+                  "type": "string",
+                  "description": "3-letter currency code to convert to, e.g. PKR"
+                }
+              },
+              "required": [
+                "from",
+                "to"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "duration": 81
+  },
+  {
+    "id": "14aad943-efa4-44a8-aa35-61edf7f14be1",
+    "timestamp": "2026-11-13T03:18:16.768Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "prompts/list",
+      "jsonrpc": "2.0",
+      "id": 3,
+      "params": {
+        "_meta": {
+          "progressToken": 3
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "prompts": [
+          {
+            "name": "convert-and-explain",
+            "title": "Convert and explain",
+            "description": "Convert an amount between two currencies and explain the calculation step by step.",
+            "arguments": [
+              {
+                "name": "amount",
+                "description": "The amount to convert, e.g. 2500",
+                "required": true
+              },
+              {
+                "name": "from",
+                "description": "Currency code to convert from, e.g. USD",
+                "required": true
+              },
+              {
+                "name": "to",
+                "description": "Currency code to convert to, e.g. PKR",
+                "required": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "duration": 584303
+  },
+  {
+    "id": "83670e5e-49aa-4eec-91a2-ab8bcc266993",
+    "timestamp": "2026-11-13T03:18:16.768Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/templates/list",
+      "jsonrpc": "2.0",
+      "id": 4,
+      "params": {
+        "_meta": {
+          "progressToken": 4
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "resourceTemplates": []
+      }
+    },
+    "duration": 584304
+  },
+  {
+    "id": "fb26f72c-66ed-48cc-8bf9-597a924d1251",
+    "timestamp": "2026-11-13T03:19:16.828Z",
+    "direction": "notification",
+    "origin": "client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications/cancelled",
+      "params": {
+        "requestId": 3,
+        "reason": "SdkError: Request timed out"
+      }
+    }
+  },
+  {
+    "id": "e25a1afb-02d8-457a-9865-70aeb917c853",
+    "timestamp": "2026-11-13T03:19:17.025Z",
+    "direction": "notification",
+    "origin": "client",
+    "message": {
+      "jsonrpc": "2.0",
+      "method": "notifications/cancelled",
+      "params": {
+        "requestId": 4,
+        "reason": "SdkError: Request timed out"
+      }
+    }
+  },
+  {
+    "id": "a72670b8-06ad-4ae7-bacf-dad7227a28dd",
+    "timestamp": "2026-11-13T03:28:00.668Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "prompts/list",
+      "jsonrpc": "2.0",
+      "id": 5,
+      "params": {
+        "_meta": {
+          "progressToken": 5
+        }
+      }
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "result": {
+        "prompts": [
+          {
+            "name": "convert-and-explain",
+            "title": "Convert and explain",
+            "description": "Convert an amount between two currencies and explain the calculation step by step.",
+            "arguments": [
+              {
+                "name": "amount",
+                "description": "The amount to convert, e.g. 2500",
+                "required": true
+              },
+              {
+                "name": "from",
+                "description": "Currency code to convert from, e.g. USD",
+                "required": true
+              },
+              {
+                "name": "to",
+                "description": "Currency code to convert to, e.g. PKR",
+                "required": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "duration": 406
+  },
+  {
+    "id": "24b9d5c5-88b6-4ded-a898-1b12b623618e",
+    "timestamp": "2026-11-13T04:20:24.627Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "resources/read",
+      "params": {
+        "uri": "rates://usd",
+        "_meta": {
+          "progressToken": 6
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 6
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "result": {
+        "contents": [
+          {
+            "uri": "rates://usd",
+            "mimeType": "application/json",
+            "text": "{\n  \"USD\": 1,\n  \"PKR\": 277.35,\n  \"EUR\": 0.9137,\n  \"GBP\": 0.7712,\n  \"JPY\": 151.42\n}"
+          }
+        ]
+      }
+    },
+    "duration": 257
+  },
+  {
+    "id": "c6d1ae32-e523-4a74-8d91-c8a3187c5050",
+    "timestamp": "2026-11-13T04:21:05.557Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "prompts/get",
+      "params": {
+        "name": "convert-and-explain",
+        "arguments": {
+          "amount": "1100",
+          "from": "USD",
+          "to": "PKR"
+        },
+        "_meta": {
+          "progressToken": 7
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 7
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "result": {
+        "messages": [
+          {
+            "role": "user",
+            "content": {
+              "type": "text",
+              "text": "Convert 1100 USD to PKR. Use the exchange rate tool for the rate and the calculator for the arithmetic if you have one, then explain each step in two sentences."
+            }
+          }
+        ]
+      }
+    },
+    "duration": 174
+  },
+  {
+    "id": "86b53321-2f6a-425a-a0ea-5baa29d41fe8",
+    "timestamp": "2026-11-13T04:22:19.405Z",
+    "direction": "request",
+    "origin": "client",
+    "message": {
+      "method": "tools/call",
+      "params": {
+        "name": "get_exchange_rate",
+        "arguments": {
+          "from": "PKR",
+          "to": "EUR"
+        },
+        "_meta": {
+          "progressToken": 8
+        }
+      },
+      "jsonrpc": "2.0",
+      "id": 8
+    },
+    "response": {
+      "jsonrpc": "2.0",
+      "id": 8,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "0.003294393365783306"
+          }
+        ]
+      }
+    },
+    "duration": 457
+  }
+]
