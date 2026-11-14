@@ -9,6 +9,7 @@
 3. The client concepts page: what a client does and what the host does.
 4. The Tools page of the specification, the error section: a result with `isError` against a protocol error.
 5. My own Day 7 `agent.ts`, to find where `tools.ts` is imported and used.
+6. After the experiments: the v2 SDK [build a first client](https://ts.sdk.modelcontextprotocol.io/v2/get-started/first-client.html) page, the [server errors](https://ts.sdk.modelcontextprotocol.io/v2/servers/errors.html) page and the [SDK index](https://ts.sdk.modelcontextprotocol.io/v2/).
 
 ## Questions I answered before coding
 
@@ -106,8 +107,8 @@ I first put the sleep in the real Day 13 server, so every run waited 60 seconds.
 
 ## Not verified
 
-- The SDK's actual shutdown sequence (I used the spec's description).
-- Whether `callTool` accepts a per-call timeout option. I have not tested it.
+- The SDK's exact shutdown sequence. The docs say `close()` ends stdin and kills the process if it has not exited, but they do not name SIGTERM.
+- A per-call timeout: `callTool` takes `{ timeout, signal }` as its second argument (checked on Day 15), but the Day 14 runs used the default.
 - Why a 60,000 ms sleep against a 60,000 ms timeout succeeded once. That run was a race.
 - Orphan processes: with `npx`, `transport.pid` is the pid of `npx`, not of the server. In my cloud test, killing it left the server running. I did not check this on my Mac.
 - The `isError` recovery path with a real unknown currency such as AUD.
