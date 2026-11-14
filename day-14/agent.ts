@@ -21,9 +21,7 @@ const tools: Anthropic.Tool[] = mcp.tools.map((t) => ({
 }));
 console.log(`MCP tools: ${tools.map((t) => t.name).join(", ")}`);
 
-const messages: Anthropic.MessageParam[] = [
-  { role: "user", content: question },
-];
+const messages: Anthropic.MessageParam[] = [ { role: "user", content: question },];
 let exit = "step_limit";
 
 try {
@@ -41,14 +39,12 @@ try {
     messages.push({ role: "assistant", content: response.content });
 
     if (response.stop_reason !== "tool_use") {
-      exit =
-        response.stop_reason === "end_turn" ? "end_turn" : `stop:${response.stop_reason}`;
+      exit = response.stop_reason === "end_turn" ? "end_turn" : `stop:${response.stop_reason}`;
       for (const block of response.content) {
         if (block.type === "text"){
           console.log(block.text);
         }
       } 
-
       break;
     }
 
@@ -57,8 +53,9 @@ try {
       if (block.type !== "tool_use") continue;
       const toolResult = await mcp.callTool(block.name, block.input as Record<string, unknown>);
       console.log(
-        `  ${block.name}(${JSON.stringify(block.input)}) -> ${toolResult.isError ? "ERROR " : ""}${toolResult.text}`,
+        `${block.name}(${JSON.stringify(block.input)}) -> ${toolResult.isError ? "ERROR " : ""}${toolResult.text}`,
       );
+
       results.push({
         type: "tool_result",
         tool_use_id: block.id,
