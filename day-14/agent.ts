@@ -1,6 +1,6 @@
 import "dotenv/config";
 import Anthropic from "@anthropic-ai/sdk";
-import { connectMcp } from "./mcp-client.ts";
+import { connectMcp } from "./mcp-client";
 
 const MODEL = "claude-haiku-5-5";
 const MAX_STEPS = 8;

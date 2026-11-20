@@ -1,4 +1,9 @@
-import { ChatRequest, sendEvent, toApiMessages, saveAssistant } from "./chat.utils";
+import {
+  ChatRequest,
+  sendEvent,
+  toApiMessages,
+  saveAssistant,
+} from "./chat.utils";
 import { Request, Response } from "express";
 import Anthropic from "@anthropic-ai/sdk";
 import { prisma } from "./db";
@@ -11,7 +16,6 @@ const PRICE_INPUT_TOKEN = 0.1 / 1_000_000;
 const PRICE_OUTPUT_TOKEN = 0.5 / 1_000_000;
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY ?? "" });
-
 
 const chat = async (req: Request, res: Response) => {
   const userId: string = res.locals.userId;
@@ -135,6 +139,7 @@ const chat = async (req: Request, res: Response) => {
       .filter((b): b is Anthropic.TextBlock => b.type === "text")
       .map((b) => b.text)
       .join("");
+      
     if (text)
       await saveAssistant(
         conversation.id,
@@ -155,7 +160,6 @@ const chat = async (req: Request, res: Response) => {
       output_tokens,
       cost: Number(cost.toFixed(7)),
     });
-
   } catch (err) {
     if (err instanceof Anthropic.APIUserAbortError) {
       console.log(`saving partial reply (${partial.length} characters)`);
@@ -207,8 +211,7 @@ const converstations = async (req: Request, res: Response) => {
   res.json({ conversations });
 };
 
-
-const conversation =  async (req: Request, res: Response) => {
+const conversation = async (req: Request, res: Response) => {
   const userId: string = res.locals.userId;
   const conversation = await prisma.conversation.findFirst({
     where: { id: req.params.id as string, userId },
@@ -222,4 +225,4 @@ const conversation =  async (req: Request, res: Response) => {
   res.json({ conversation });
 };
 
-export { chat, conversation, converstations};
+export { chat, conversation, converstations };
