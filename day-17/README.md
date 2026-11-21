@@ -2,8 +2,6 @@
 
 **Week 4: MCP with a real backend**
 
-> DRAFT written by Claude. Edit it into your own words before you push.
-
 ## What I read before coding
 
 1. The v2 SDK [Authorization](https://ts.sdk.modelcontextprotocol.io/v2/serving/authorization.md) page again, looking for `authInfo`, `requireBearerAuth` and `ctx.http`. Today's code reads the `Authorization` header directly and does not use them.
