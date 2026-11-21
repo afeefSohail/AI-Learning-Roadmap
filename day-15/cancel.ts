@@ -26,7 +26,7 @@ const handler = createMcpHandler(createServer);
 const client = new Client( { name: "cancel", version: "1" }, { versionNegotiation: { mode: "auto" } } );
 await client.connect(
   new StreamableHTTPClientTransport(new URL("http://t.local/mcp"), {
-    fetch: (u, i) => handler.fetch(new Request(u, i)),
+    fetch: (url, init) => handler.fetch(new Request(url, init)),
   }),
 );
 const t0 = Date.now();
