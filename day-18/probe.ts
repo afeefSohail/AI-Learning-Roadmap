@@ -1,3 +1,6 @@
+// Experiment, not a test: run with npx tsx day-18/probe.ts and read the table. 
+// The real checks are in server.test.ts.
+
 import { McpServer, createMcpHandler, inputRequired } from "@modelcontextprotocol/server";
 import { Client, StreamableHTTPClientTransport } from "@modelcontextprotocol/client";
 import { z } from "zod";
