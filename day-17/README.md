@@ -38,6 +38,8 @@ npx tsx day-17/http-server.ts
 node --import tsx --test day-17/*.test.ts
 ```
 
+**Per-request factory** `createMcpHandler(createServer)` does not take one server. It takes a function that builds a server, called a factory. The SDK calls the `factory` once for every HTTP request, with a context that holds the request's headers. My `createServer(ctx)` reads the `Authorization header` from that context, creates a new MCP server, and registers the tools as closures over that request's token. So nothing about the user is stored between requests, and two users at the same time can't see each other's token. The factory runs before any tool, which is why `tools/list` works without a token, and the token is only read when a tool actually runs.
+
 ## Key idea: a tool has one API call, so a 401 means nothing ran
 
 Each tool makes exactly one request. If the API answers 401, no work was done, so the server can answer the whole HTTP request with a 401 and the client can refresh and retry safely. The model never sees the token, never chooses a user, and is never told it may retry.
@@ -109,13 +111,14 @@ Removing the shared refresh promise failed the parallel-refresh test. Removing t
 - Whether the "retrying once" log line appeared for the API-stopped test on the real stack.
 - Whether a `WeakMap` keyed by the request could replace `AsyncLocalStorage`.
 - How cancellation travels on the wire in the 2026 protocol.
-- Annotation defaults and elicitation over stateless HTTP (carried from Day 16).
+- Closed on Day 18: annotation defaults and elicitation over stateless HTTP. A 2025-era stateless connection cannot ask the user at all and fails at once. On 2026-07-28, input_required works in JSON mode.
+- authInfo / requireBearerAuth (my answer is not written), Claude Code with --header, the stale-token branch, a refresh against the real API, the "retrying once" log line, the WeakMap idea, and cancellation on the wire in 2026.
 
 ## What I would change
 
 - Return an unambiguous error when a client starts OAuth discovery, so a wrong token is not hidden behind a 404.
 - Add a test for the stale-token path.
-- Day 18: `responseMode: "json"` and my buffering drop messages sent during a call. A confirmation step for `delete_photo` through elicitation needs a different approach, so decide this before writing the tool.
+- Done on Day 18: confirmation for `delete_photo` uses `input_required`, which works in JSON mode on the 2026 protocol. A 2025-era client cannot be asked and fails closed.through elicitation needs a different approach, so decide this before writing the tool.
 
 ## Rules of thumb
 
@@ -124,6 +127,8 @@ Removing the shared refresh promise failed the parallel-refresh test. Removing t
 - Retry reads in code, never writes, and never tell the model it may retry.
 - The client refreshes tokens, not the model and not the MCP server.
 - A green "Connected" does not mean the credentials work.
+- responseMode: "json" forces createMcpHandler to return a single, standard application/json response instead of opening a Server-Sent Events (SSE)
+
 
 ## Next (Day 18)
 
