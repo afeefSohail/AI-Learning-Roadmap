@@ -111,14 +111,14 @@ Removing the shared refresh promise failed the parallel-refresh test. Removing t
 - Whether the "retrying once" log line appeared for the API-stopped test on the real stack.
 - Whether a `WeakMap` keyed by the request could replace `AsyncLocalStorage`.
 - How cancellation travels on the wire in the 2026 protocol.
-- Closed on Day 18: annotation defaults and elicitation over stateless HTTP. A 2025-era stateless connection cannot ask the user at all and fails at once. On 2026-07-28, input_required works in JSON mode.
+- Closed on Day 18: annotation defaults and elicitation over stateless HTTP. A 2025-era stateless connection cannot ask the user at all and fails at once. On 2026-07-28, `input_required` works in JSON mode.
 - authInfo / requireBearerAuth (my answer is not written), Claude Code with --header, the stale-token branch, a refresh against the real API, the "retrying once" log line, the WeakMap idea, and cancellation on the wire in 2026.
 
 ## What I would change
 
 - Return an unambiguous error when a client starts OAuth discovery, so a wrong token is not hidden behind a 404.
 - Add a test for the stale-token path.
-- Done on Day 18: confirmation for `delete_photo` uses `input_required`, which works in JSON mode on the 2026 protocol. A 2025-era client cannot be asked and fails closed.through elicitation needs a different approach, so decide this before writing the tool.
+- Done on Day 18: confirmation for `delete_photo` uses `input_required`, which works in JSON mode on the 2026 protocol. A 2025-era client cannot be asked and fails closed.
 
 ## Rules of thumb
 

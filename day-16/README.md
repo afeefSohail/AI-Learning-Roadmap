@@ -135,11 +135,11 @@ The MCP authorization spec says servers **must** accept only tokens issued for t
 
 ## Not verified
 
-- Closed on Day 17: an HTTP 401 from a handler. I did it with a flag that the tool sets and a wrapper around mcp.fetch (day-17/http-server.ts). I did not prove that the SDK has no direct way.
-- Closed on Day 18: the annotation defaults and the meaning of `idempotentHint`, checked against the 2026-07-28 schema (day-18/NOTES.md, Q1).
+- Closed on Day 17: an HTTP 401 from a handler. I did it with a flag that the tool sets and a wrapper around `mcp.fetch` (`day-17/http-server.ts`). I did not prove that the SDK has no direct way.
+- Closed on Day 18: the annotation defaults and the meaning of `idempotentHint`, checked against the 2026-07-28 schema (`day-18/NOTES.md`, Q1).
 - Partly closed on Day 18: elicitation. Inspector 2.16 asks the user on 2026-07-28 and fails closed on 2025-11-25 (real runs). A server whose client cannot ask returns a tool error and deletes nothing. My Day 14 agent was tested only in-process, and Claude Code is unknown.
 - Still open: whether Claude Code or Claude Desktop can send a static `Authorization` header. Only the Inspector was tried.
-- Still open, estimate only: the token budget for five tools. About 400 to 530 tokens for the definitions, estimated from characters and not counted by the API (day-18/measure.ts).
+- Still open, estimate only: the token budget for five tools. About 396 to 527 tokens for the definitions, estimated from characters and not counted by the API (`day-18/measure.ts`).
 
 ## Rules of thumb
 
