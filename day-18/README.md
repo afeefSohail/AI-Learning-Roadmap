@@ -77,7 +77,8 @@ The tool deletes only when the user said yes to this photo. If the client cannot
 | 2025-era client, `input_required` or old-style `elicitInput`, with and without buffering | Error at once, 0 calls |
 
 Reproduced on my Mac with the same results.
-
+**The README:** says "about 400 to 530 tokens". Your output says 396 to 527. The README rounds it, which is fine, but if you want the exact numbers, use 396 to 527.
+**It is still an estimate.** The script divides characters by 4 and by 3, so the table is a range from my formula. The API did not count it. To close the row properly, compare usage.input_tokens from your Day 14 agent for one request with these tools and one without. I haven't done that.
 ### Real API with the MCP Inspector 2.16
 
 | Check | Result |
