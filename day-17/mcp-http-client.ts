@@ -33,8 +33,19 @@ export function authFetch(apiBaseUrl: string, tokens: Tokens): typeof fetch {
   }
 
   const send = (input: string | URL | Request, init: RequestInit | undefined, accessToken: string) => {
+    // initial headers are preserved, but the Authorization header is replaced
     const headers = new Headers(init?.headers);
     headers.set("Authorization", `Bearer ${accessToken}`);
+  /*
+    fetch(input, {
+      method: init.method,
+      body: init.body,
+      mode: init.mode,
+      // ...all other properties from init
+      headers: headers // Replaces any existing init.headers
+    });
+  */
+    // ...init (spread syntax) copies all properties from init, but we override headers with our modified headers
     return fetch(input, { ...init, headers });
   };
 

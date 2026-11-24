@@ -59,12 +59,12 @@ export function createServer(ctx: McpRequestContext): McpServer {
       inputSchema: z.object({}),
       annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
     },
-    (_args, c) =>
-      run(c.mcpReq.signal, async (t) => {
-        const u = (await getJson("/auth/me", t, c.mcpReq.signal)) as {
+    (_args, ctx) =>
+      run(ctx.mcpReq.signal, async (token) => {
+        const user = (await getJson("/auth/me", token, ctx.mcpReq.signal)) as {
           id: number; email: string; name: string; createdAt: string; photos?: Photo[];
         };
-        return { id: u.id, email: u.email, name: u.name, createdAt: u.createdAt, photos: (u.photos ?? []).map(photo) };
+        return { id: user.id, email: user.email, name: user.name, createdAt: user.createdAt, photos: (user.photos ?? []).map(photo) };
       }),
   );
 
@@ -76,8 +76,8 @@ export function createServer(ctx: McpRequestContext): McpServer {
       inputSchema: z.object({}),
       annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
     },
-    (_args, c) =>
-      run(c.mcpReq.signal, async (t) => ((await getJson("/user/me/photos", t, c.mcpReq.signal)) as Photo[]).map(photo)),
+    (_args, ctx) =>
+      run(ctx.mcpReq.signal, async (token) => ((await getJson("/user/me/photos", token, ctx.mcpReq.signal)) as Photo[]).map(photo)),
   );
 
   server.registerTool(
@@ -88,8 +88,8 @@ export function createServer(ctx: McpRequestContext): McpServer {
       inputSchema: z.object({ photoId: z.number().int().positive().describe("The photo's ID, from list_photos") }),
       annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
     },
-    ({ photoId }, c) =>
-      run(c.mcpReq.signal, async (t) => photo((await getJson(`/user/photos/${photoId}`, t, c.mcpReq.signal)) as Photo)),
+    ({ photoId }, ctx) =>
+      run(ctx.mcpReq.signal, async (token) => photo((await getJson(`/user/photos/${photoId}`, token, ctx.mcpReq.signal)) as Photo)),
   );
 
   return server;
