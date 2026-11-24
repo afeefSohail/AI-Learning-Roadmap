@@ -56,10 +56,10 @@ export function createServer(ctx: McpRequestContext): McpServer {
       inputSchema: z.object({ name: z.string().trim().min(NAME_MIN).max(NAME_MAX).describe("The new display name") }),
       annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
     },
-    async ({ name }, c) => {
+    async ({ name }, ctx) => {
       if (!token) return authRequired();
       try {
-        const u = (await writeJson("PATCH", "/user/me", token, { name }, c.mcpReq.signal)) as { id: number; email: string; name: string };
+        const u = (await writeJson("PATCH", "/user/me", token, { name }, ctx.mcpReq.signal)) as { id: number; email: string; name: string };
         return asText({ id: u.id, email: u.email, name: u.name });
       } catch (err) {
         return failure(err, "update_profile", "the update", "Check with get_me, or tell the user.");
@@ -76,19 +76,19 @@ export function createServer(ctx: McpRequestContext): McpServer {
       inputSchema: z.object({ photoId: z.number().int().positive().describe("The photo's ID, from list_photos") }),
       annotations: { readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
     },
-    async ({ photoId }, c) => {
+    async ({ photoId }, ctx) => {
       if (!token) return authRequired();
-      const key = confirmKey(photoId);
-      const answer = (c.mcpReq.inputResponses as Record<string, Answer> | undefined)?.[key];
+      const photoIdkey = confirmKey(photoId);
+      const answer = (ctx.mcpReq.inputResponses as Record<string, Answer> | undefined)?.[photoIdkey];
 
       if (answer === undefined) {
         // Round 1. Fail closed BEFORE any API call if the client cannot ask the user.
-        const caps = (c.mcpReq.envelope as Record<string, { elicitation?: unknown } | undefined> | undefined)?.[CLIENT_CAPABILITIES_META_KEY];
+        const caps = (ctx.mcpReq.envelope as Record<string, { elicitation?: unknown } | undefined> | undefined)?.[CLIENT_CAPABILITIES_META_KEY];
         if (!caps?.elicitation) return fail(CANNOT_ASK);
         // Look the photo up, so a 401 or a 404 shows up before the user is asked anything.
         let photo: { id: number; url: string };
         try {
-          photo = (await getJson(`/user/photos/${photoId}`, token, c.mcpReq.signal)) as { id: number; url: string };
+          photo = (await getJson(`/user/photos/${photoId}`, token, ctx.mcpReq.signal)) as { id: number; url: string };
         } catch (err) {
           if (err instanceof UnauthorizedError) return authRequired();
           if (err instanceof ApiError && err.status === 404) return fail(NOT_FOUND);
@@ -100,7 +100,9 @@ export function createServer(ctx: McpRequestContext): McpServer {
         const url = photo.url.startsWith("http") ? photo.url : `${BASE_URL()}${photo.url}`;
         return inputRequired({
           inputRequests: {
-            [key]: inputRequired.elicit({
+            // [photoIdkey] => confirm_delete_photo_{photoIdkey} is the key under which the answer for this photo travels. 
+            // An answer for photo 2 never opens photo 3.
+            [photoIdkey]: inputRequired.elicit({
               message: `Delete photo ${photoId}? This permanently removes the photo and its file and cannot be undone.\n${url}`,
               requestedSchema: z.object({ confirm: z.boolean() }),
             }),
@@ -111,7 +113,7 @@ export function createServer(ctx: McpRequestContext): McpServer {
       // Round 2. Only an explicit accept with confirm: true deletes. Decline, cancel or anything else does not.
       if (answer.action !== "accept" || answer.content?.confirm !== true) return say(CANCELLED);
       try {
-        await writeJson("DELETE", `/user/photos/${photoId}`, token, undefined, c.mcpReq.signal);
+        await writeJson("DELETE", `/user/photos/${photoId}`, token, undefined, ctx.mcpReq.signal);
         return say(`Photo ${photoId} was deleted.`);
       } catch (err) {
         if (err instanceof ApiError && err.status === 404) return fail(NOT_FOUND);

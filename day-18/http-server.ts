@@ -10,11 +10,20 @@ const mcp = createMcpHandler(createServer, { responseMode: "json" });
 const guarded = {
   fetch: async (request: Request, options?: Parameters<typeof mcp.fetch>[1]) => {
     const state = { unauthorized: false };
+    // mcp.fetch returns a response whose body is still being streamed, before the tool has even run. 
+    // At that moment the flag is still false
     let response = await requestState.run(state, () => mcp.fetch(request, options));
+
     if (request.method === "POST") {
+    // await until the streamed response is fully read, so the check below sees the final state
+    // which means the tool has finished and the flag is final.    
       const body = await response.arrayBuffer();
+
+      // The price is that streaming is lost: anything the server sent during the call reaches the client only at the end. 
+      // It is done only for POST, because a GET can be a stream that never ends, and waiting for it would hang.
       response = new Response(body, { status: response.status, headers: response.headers });
     }
+
     if (!state.unauthorized) return response;
     return new Response(JSON.stringify({ error: "invalid_token", error_description: "Missing, expired or invalid access token" }), {
       status: 401,
