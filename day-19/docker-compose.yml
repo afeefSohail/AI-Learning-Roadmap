@@ -1,0 +1,28 @@
+# The UserAuth MCP server, started next to the UserAuth backend without changing the backend's compose file.
+#
+#   1. Start the backend as usual (docker compose up -d in the UserAuth backend folder).
+#   2. Find the network the backend runs on, then start this service on the same network:
+#        export BACKEND_NETWORK=$(docker inspect user_auth_api --format '{{range $k,$v := .NetworkSettings.Networks}}{{$k}}{{end}}')
+#        docker compose -f day-19/docker-compose.yml up -d --build
+name: userauth-mcp
+
+services:
+  mcp:
+    build:
+      context: ..                 # the repository root
+      dockerfile: day-19/Dockerfile
+    container_name: userauth_mcp
+    restart: unless-stopped
+    environment:
+      USERAUTH_BASE_URL: http://user-auth:3000   # how THIS container reaches the API: the API's service name on the shared network
+      PUBLIC_BASE_URL: http://localhost:3000     # how the USER's machine reaches the API: used for photo links
+      # ALLOWED_HOSTS: mcp                       # add the names other containers use to call this one
+    ports:
+      - "127.0.0.1:3333:3333"     # only this computer can reach the server. Use "3333:3333" to open it to the network.
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: ${BACKEND_NETWORK:?set BACKEND_NETWORK, see the comment at the top of this file}
+    external: true

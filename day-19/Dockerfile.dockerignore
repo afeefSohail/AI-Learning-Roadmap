@@ -1,0 +1,10 @@
+# Allow-list: only what the image needs. Everything else (.env, .git, node_modules, other days) stays out.
+*
+!package.json
+!package-lock.json
+!tsconfig.json
+!day-17
+!day-18
+!day-19
+**/node_modules
+**/.env
