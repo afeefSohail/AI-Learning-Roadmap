@@ -1,7 +1,7 @@
 import { CLIENT_CAPABILITIES_META_KEY, inputRequired, type McpRequestContext, type McpServer } from "@modelcontextprotocol/server";
 import { z } from "zod";
 import { createServer as createReadServer, requestState } from "../day-17/create-server";
-import { ApiError, BASE_URL, getJson, UnauthorizedError, UnavailableError } from "../day-17/userauth-client";
+import { ApiError, getJson, PUBLIC_BASE_URL, UnauthorizedError, UnavailableError } from "../day-17/userauth-client";
 import { OutcomeUnknownError, writeJson } from "./write-client";
 
 export const NAME_MIN = 1;
@@ -97,7 +97,9 @@ export function createServer(ctx: McpRequestContext): McpServer {
           console.error("delete_photo lookup failed:", err);
           return fail("Internal error in the UserAuth tool. Please try again later.");
         }
-        const url = photo.url.startsWith("http") ? photo.url : `${BASE_URL()}${photo.url}`;
+        
+        const url = photo.url.startsWith("http") ? photo.url : `${PUBLIC_BASE_URL()}${photo.url}`;
+        
         return inputRequired({
           inputRequests: {
             // [photoIdkey] => confirm_delete_photo_{photoIdkey} is the key under which the answer for this photo travels. 

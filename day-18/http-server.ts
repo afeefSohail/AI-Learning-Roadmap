@@ -7,7 +7,7 @@ import { createServer } from "./create-server";
 const mcp = createMcpHandler(createServer, { responseMode: "json" });
 
 /** Same wrapper as Day 17: if a tool saw a 401 from the API, answer the HTTP request with 401. */
-const guarded = {
+export const guarded = {
   fetch: async (request: Request, options?: Parameters<typeof mcp.fetch>[1]) => {
     const state = { unauthorized: false };
     // mcp.fetch returns a response whose body is still being streamed, before the tool has even run. 

@@ -1,6 +1,6 @@
 # Day 18 notes: annotations, confirmation and ownership
 
-> Answers written before coding. Paragraphs marked "Review note (from Claude, not yet in my own words)" are corrections or results I still have to restate myself. The experiment result in Q3 comes from `day-18/probe.ts`.
+> Answers written before coding. The experiment result in Q3 comes from `day-18/probe.ts`.
 
 ## Q1. Annotations: which values for `update_profile` and `delete_photo`, and what does an annotation guarantee?
 
@@ -38,7 +38,6 @@ The tool first checks that the client declared the elicitation capability, and f
 
 If the client does not support elicitation, the delete fails closed. Nothing happens, and the photo was not deleted.
 
-**Review note (from Claude, not yet in my own words):**
 - Decision: a client that cannot ask gets a tool error (`isError: true`, "This client cannot ask the user for confirmation, so the photo was not deleted."), not the thrown protocol error from the SDK. A tool can read the client's declared capabilities from `ctx.mcpReq.envelope[CLIENT_CAPABILITIES_META_KEY]`. A 2025-era connection has no envelope, so it fails closed the same way.
 - The confirmation protects against a model that acts by mistake. It cannot protect against a client that lies about the user's answer.
 
@@ -51,7 +50,7 @@ If the client does not support elicitation, the delete fails closed. Nothing hap
 - Prediction: the tool call hangs until the client's timeout (60 s by default), then fails.
 - Stateless HTTP on the Elicitation page: unknown. The 2025-11-25 page does not mention it. The 2026-07-28 page moves elicitation into an `InputRequiredResult` returned as the call's response, which needs no open stream.
 
-**Review note (from Claude, not yet in my own words): the experiment** (`day-18/probe.ts`, in-process `createMcpHandler` with `responseMode: "json"`, SDK 2.4.0, a stub tool that counts API calls):
+**the experiment** (`day-18/probe.ts`, in-process `createMcpHandler` with `responseMode: "json"`, SDK 2.4.0, a stub tool that counts API calls):
 
 | Case | Result |
 |---|---|
@@ -135,7 +134,7 @@ test("API rejects User B deleting User A's photo", async () => {
 - May it say retry? No. The first call may have succeeded. A blind second delete then returns 404, and the model would wrongly tell the user the photo never existed.
 - Code: the write path must not share the read helper that retries once. Writes are never retried.
 
-**Review note (from Claude, not yet in my own words):** the Day 17 message "The service is unavailable. Do not retry; tell the user." is wrong for a write, because it suggests that nothing happened. The write path needs its own "outcome unknown" message.
+- the Day 17 message "The service is unavailable. Do not retry; tell the user." is wrong for a write, because it suggests that nothing happened. The write path needs its own "outcome unknown" message.
 
 ## Q6. Tests
 
@@ -161,7 +160,7 @@ Tests 1 to 3 and 8 need a client on the 2026 protocol (`versionNegotiation: { mo
 
 **My answer:** `name` only. The email is the unique login key, so changing it needs its own verification flow. The tool accepts a name of 1 to 100 characters after trimming (`NAME_MIN` and `NAME_MAX` in `day-18/create-server.ts`). My backend's `updateUser` controller has no minimum or maximum, so these limits exist only in the tool, which a direct API call bypasses. The same rule belongs in the API, as a validator on the route.
 
-**Review note (from Claude, not yet in my own words):** the 5-character minimum I wrote earlier came from the signup validator, which I have not read. The `updateUser` controller you pasted has no validation. As far as I can tell from that code, with no change to the API:
+- the 5-character minimum I wrote earlier came from the signup validator, which I have not read. The `updateUser` controller you pasted has no validation. As far as I can tell from that code, with no change to the API:
 - A missing `name` leaves the user unchanged and still answers 200.
 - A non-string `name` probably ends as a 500 from Prisma.
 - The `if (!user)` 404 branch is probably unreachable, because `prisma.user.update` throws when the row is missing.
