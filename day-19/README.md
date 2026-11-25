@@ -53,7 +53,7 @@ The same API has three addresses, depending on who asks. The MCP container uses 
 
 ### Automated tests
 
-`day-19/http-server.test.ts`: 11 tests (config, binding, `/health`, wrong Host, allowed service name, Origin, 404, link and call addresses, SIGTERM). [Write the real count and result from your run before pushing.]
+`day-19/http-server.test.ts`: 11 of 11 pass (config, binding, `/health`, wrong Host, allowed service name, Origin, 404, link and call addresses, SIGTERM). All tests of Days 17 to 19 together: 40 of 40 pass (`node --import tsx --test day-17/*.test.ts day-18/*.test.ts day-19/*.test.ts`, run on 2026-11-25).
 
 ### Real stack
 
