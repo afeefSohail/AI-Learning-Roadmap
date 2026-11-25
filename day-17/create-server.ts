@@ -1,7 +1,7 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import { McpServer, type McpRequestContext } from "@modelcontextprotocol/server";
 import { z } from "zod";
-import { ApiError, BASE_URL, getJson, UnauthorizedError, UnavailableError } from "./userauth-client";
+import { ApiError, getJson, PUBLIC_BASE_URL, UnauthorizedError, UnavailableError } from "./userauth-client";
 
 /** Per-request state shared with the HTTP wrapper, so a 401 from the API can become an HTTP 401. */
 export const requestState = new AsyncLocalStorage<{ unauthorized: boolean }>();
@@ -10,7 +10,7 @@ type Photo = { id: number; url: string; createdAt: string };
 
 const photo = (p: { id: number; url: string; createdAt: string }): Photo => ({
   id: p.id,
-  url: p.url.startsWith("http") ? p.url : `${BASE_URL()}${p.url}`,
+  url: p.url.startsWith("http") ? p.url : `${PUBLIC_BASE_URL()}${p.url}`,
   createdAt: p.createdAt,
 });
 

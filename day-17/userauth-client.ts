@@ -2,6 +2,7 @@
 // It never logs or returns the token.
 
 export const BASE_URL = () => process.env.USERAUTH_BASE_URL ?? "http://localhost:3000";
+export const PUBLIC_BASE_URL = () => process.env.PUBLIC_BASE_URL ?? BASE_URL();
 
 /** The API said 401: the token is missing, expired or invalid. Nothing ran. */
 export class UnauthorizedError extends Error {}
