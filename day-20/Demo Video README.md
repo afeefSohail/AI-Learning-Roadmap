@@ -1,0 +1,11 @@
+- claude mcp add --transport http userauth http://127.0.0.1:3333/mcp --header "Authorization: Bearer $TOKEN"
+- Start claude and type /mcp to see whether userauth shows as connected.
+- Select UserAuth MCP Server
+- Reconenct it. (It takes few seconds/minuts)
+- Run the four prompts:
+    - "Who am I on this service, and how many photos do I have?"
+    - "List my photos with their IDs and tell me the ID of the newest one."
+    - "Change my display name to Izhaan Afeef Sohail." (then change it back)
+    - "Delete the photo with ID [2, 3, 4, 5, 6, 7, 8]."
+- /exit (exit from claude)
+- claude mcp remove userauth
