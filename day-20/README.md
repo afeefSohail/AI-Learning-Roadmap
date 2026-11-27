@@ -91,6 +91,28 @@ Claude Code v2.1.332 (Sonnet 5.5, auto mode on) connected to my server in Docker
 
 Prompts I recorded: "Who am I on this service, and how many photos do I have?" (the model called `get_me` and `list_photos`), "List my photos with their IDs.", "Change my display name to ..." (`update_profile`), and "Delete the photo with ID 8".
 
+## Demo results
+Recording: `Demo demo of Claude using MCP Server (short).mp4` (52 s, no audio; the 3 min 26 s original is kept locally). The wait for the delete is sped up 4x.
+
+| Step | Prompt | What happened |
+|---|---|---|
+| 1 | Reconnect | Claude Code reconnected to `userauth` over HTTP with the Bearer header |
+| 2 | "Who am I on this service, and how many photos do I have?" | `get_me` and `list_photos` were called. Signed in as user ID 2 with 7 photos (IDs 2, 4, 5, 6, 7, 8, 9) |
+| 3 | "List my photos with their IDs and tell me the ID of the newest one." | Table of 7 photos. Newest is ID 9. Photos 4–9 share one `createdAt` because they were uploaded in one batch, so the model picked the highest ID and the latest timestamp in the filename |
+| 4 | "Delete the photo with ID 8" | The server asked for input (`input_required`, round 1) and showed a confirmation form: "Delete photo 8? This permanently removes the photo and its file and cannot be undone." I ticked `confirm` and accepted. Reply: "Photo 8 is deleted. You now have 6 photos, with IDs 2, 4, 5, 6, 7 and 9." The call count showed 2 calls, 1 failed, and the retry succeeded |
+| 5 | "List my photos again to confirm it's gone" | "Photo 8 is gone." 6 photos, with IDs 2, 4, 5, 6, 7 and 9 |
+| 6 | "Change my display name to Izhaan Afeef" | Display name changed from "Izhaan Afeef Sohail" to "Izhaan Afeef". The model also noted that the line I had highlighted in my prompt file says "Izhaan Afeef Sohail", which doesn't match what I typed |
+
+### What the demo shows
+- The delete only ran after a human accepted the confirmation form. Claude cannot delete a photo on its own through this tool.
+- Auth is a static Bearer header set with `claude mcp add`. The token never appears on screen.
+- The account is a test account I made for this roadmap.
+
+### Checked before pushing
+- [ ] I watched the whole video and saw no token, Authorization header or password.
+- [ ] `grep -c eyJ ~/.claude.json` returned 0 after `claude mcp remove userauth`.
+- [ ] The video is small enough to commit (787 KB), or it is linked instead.
+
 ## Findings
 
 ### 1. My server breaks the spec's discovery rule
