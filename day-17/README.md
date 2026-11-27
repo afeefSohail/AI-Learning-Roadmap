@@ -8,7 +8,7 @@
 2. The [serving over HTTP](https://ts.sdk.modelcontextprotocol.io/v2/serving/http) page: `createMcpHandler`, the factory that runs once per request, and `responseMode`.
 3. The README of `@modelcontextprotocol/node`: `toNodeHandler` and `localhostHostValidation`.
 4. My Day 16 README, "Open questions for Day 17".
-5. My own `requireJWTAuth` and the `getMe` and photo controllers, to see what each route returns.
+5. The v2 SDK Authorization page again (`authInfo`, `requireBearerAuth`, `expectedResource`). My answer to the Day 17 question is in `NOTES.md`, last section.
 
 ## Questions I answered before coding
 
@@ -78,6 +78,9 @@ Inspector 2.16.0 has a Custom Headers section (Key and Value fields) on each ser
 ### 2. A 401 makes a spec-following client start OAuth
 When my server answered 401, the Inspector did not show "invalid token". It looked for an authorization server and tried Dynamic Client Registration on my server, got a 404 and showed only that. The real cause (a wrong token) is hidden behind it. This is the price of the forwarding design from Day 16: the server speaks like an OAuth resource server but has no authorization server behind it.
 
+### 2b. The SDK has a gate that does what my wrapper does by hand
+`requireBearerAuth` verifies the token before any tool runs, sends the 401 or 403 with the right `WWW-Authenticate` challenge, and hands tools the result as `ctx.http.authInfo`. With `expectedResource` it also checks the audience. I did not try it. The cost is that my server would need to verify tokens itself, through an extra API call or the signing secret.
+
 ### 3. "Connected" proves nothing about the token
 `tools/list` works with no token, so the green dot appears even with a wrong or missing token. Only a tool call checks it.
 
@@ -104,7 +107,7 @@ Removing the shared refresh promise failed the parallel-refresh test. Removing t
 
 ## Not verified
 
-- Why I might prefer `authInfo` / `requireBearerAuth` over reading the header myself (reading item 1). My answer is not written yet.
+- Why I might prefer `authInfo` / `requireBearerAuth` over reading the header myself: answered on Day 20 (`day-20/NOTES.md`, last section). Reading only, not tried in code.
 - Claude Code with `claude mcp add --transport http --header ...`, and where it stores the header.
 - The stale-token branch of the client refresh (a 401 that arrives after the refresh has finished). No test covers it.
 - A client refresh against the real API. The Inspector does not refresh, and my refresh client was tested only against the mock.
@@ -119,6 +122,7 @@ Removing the shared refresh promise failed the parallel-refresh test. Removing t
 - Return an unambiguous error when a client starts OAuth discovery, so a wrong token is not hidden behind a 404.
 - Add a test for the stale-token path.
 - Done on Day 18: confirmation for `delete_photo` uses `input_required`, which works in JSON mode on the 2026 protocol. A 2025-era client cannot be asked and fails closed.
+- Try requireBearerAuth with a verifier that calls the API, and compare it with my AsyncLocalStorage wrapper.
 
 ## Rules of thumb
 

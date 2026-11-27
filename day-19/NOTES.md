@@ -2,6 +2,12 @@
 
 ## Reading notes: Compose basics
 
+**Published Port:**
+When you read `127.0.0.1:3000:3000` from left to right, it moves from your computer into the container:
+• `127.0.0.1` (Host Address): The local IP address on your computer.
+• `3000` (Host Port): The port open on your computer.
+• `3000` (Container Port): The port your application is listening on inside the container.
+
 - **Service names:** `docker compose up` creates one bridge network, `<project>_default`, and attaches every service to it. Services reach each other by service name. No `networks:` block is needed inside one project.
 - **`ports` vs `expose`:** `ports` publishes a container port on the host (`3001:3000` is host port : container port). `expose` has no host port; it only marks a container port as internal. I use `ports` for things I call from my laptop and keep databases and caches unpublished.
 - **`depends_on`:** by default it waits only until the dependency has *started*. With `condition: service_healthy` and a `healthcheck` on the database, the API waits until the database is ready.
